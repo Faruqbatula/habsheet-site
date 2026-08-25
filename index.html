@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Habsheet — habitation reports on a tablet</title>
+<meta name="description" content="Habsheet lets caravan and motorhome habitation engineers complete the service check and damp report on a tablet and hand the customer a finished PDF on site.">
+<style>
+  :root { --bg:#0f1114; --panel:#171a1e; --card:#1d2226; --ink:#fff; --dim:#8b9299; --line:#242a30; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink);
+         font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+         -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:720px; margin:0 auto; padding:64px 24px 80px; }
+  header { display:flex; align-items:center; gap:16px; margin-bottom:56px; }
+  .mark { width:44px; height:44px; flex:none; }
+  .name { font-size:15px; letter-spacing:.22em; text-transform:uppercase; font-weight:600; }
+  h1 { font-size:32px; line-height:1.25; font-weight:600; margin:0 0 20px; letter-spacing:-.01em; }
+  .lede { font-size:18px; color:#c8ced4; margin:0 0 44px; }
+  h2 { font-size:13px; letter-spacing:.16em; text-transform:uppercase; color:var(--dim);
+       font-weight:600; margin:0 0 18px; }
+  ul { list-style:none; padding:0; margin:0 0 44px; }
+  li { padding:13px 0; border-bottom:1px solid var(--line); color:#c8ced4; }
+  li:first-child { border-top:1px solid var(--line); }
+  li b { color:var(--ink); font-weight:600; }
+  .box { background:var(--card); border-radius:12px; padding:22px 24px; margin:0 0 44px; }
+  .box p { margin:0; color:#c8ced4; font-size:15px; }
+  a { color:#fff; }
+  footer { border-top:1px solid var(--line); padding-top:24px; color:var(--dim); font-size:14px; }
+  footer a { text-decoration:none; }
+  footer a:hover { text-decoration:underline; }
+  @media (max-width:520px){ .wrap{padding:40px 20px 60px} h1{font-size:26px} .lede{font-size:17px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <svg class="mark" viewBox="0 0 1024 1024" aria-label="Habsheet">
+      <rect width="1024" height="1024" fill="#0f1114"/>
+      <path fill="#fff" d="M160 112h704v800H160z"/>
+      <path fill="#0f1114" d="M232 184h560v656H232z"/>
+      <path fill="#fff" d="M268 240h488v56H268zM268 372h488v56H268zM268 504h488v56H268zM476 560h56v280h-56z"/>
+      <path fill="none" stroke="#fff" stroke-width="56" stroke-linecap="round" stroke-linejoin="round"
+            d="M578 700l58 60 106-140"/>
+    </svg>
+    <span class="name">Habsheet</span>
+  </header>
+
+  <h1>The habitation check, done on a tablet.</h1>
+
+  <p class="lede">Habsheet lets caravan and motorhome habitation engineers complete the
+  service check sheet and the damp report on screen, and hand the customer a finished
+  PDF before leaving site.</p>
+
+  <h2>What it does</h2>
+  <ul>
+    <li><b>The sheets you already use.</b> Not a redesign — the paperwork your customers recognise, filled in on screen.</li>
+    <li><b>Records, rather than ticks.</b> Voltages, trip times, continuity, tread depths, torque settings and expiry dates are entered as values.</li>
+    <li><b>Damp readings on the diagram.</b> Tapped straight onto the vehicle, with the features drawn in.</li>
+    <li><b>Signed on site.</b> Technician and customer signatures captured on the tablet.</li>
+    <li><b>One PDF for the customer.</b> Both documents together, before you leave the driveway.</li>
+    <li><b>Year on year.</b> Readings kept against the vehicle, so a van getting worse is visible rather than filed away.</li>
+  </ul>
+
+  <h2>Where it's up to</h2>
+  <div class="box">
+    <p>Habsheet is in testing with working engineers on real jobs, on iPad, iPhone
+    and Android. If you carry out habitation checks and would like to try it,
+    get in touch.</p>
+  </div>
+
+  <footer>
+    <a href="mailto:faruq@habsheet.com">faruq@habsheet.com</a><br>
+    Habsheet — United Kingdom
+  </footer>
+
+</div>
+</body>
+</html>
