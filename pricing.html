@@ -23,11 +23,18 @@
   a{color:#fff}
 
   /* ---- header ---- */
-  header{display:flex;align-items:center;gap:14px;padding-block:40px 0}
+  /* 28px, the same on both pages. The nav's own 11px supplies the breathing room
+   that a taller header used to; 40 pushed the content down for nothing. */
+header{display:flex;align-items:center;gap:14px;padding-block:28px 0}
   .mark{width:38px;height:38px;flex:none}
   .name{font-size:14px;letter-spacing:.22em;text-transform:uppercase;font-weight:600}
   .nav{margin-left:auto;display:flex;gap:22px}
-  .nav a{font-size:14px;color:var(--dim);text-decoration:none}
+  /* 44 px of target, not 22. The anchors are flex items — .nav is display:flex —
+   so they are blockified and this padding is real layout height rather than
+   the phantom box inline padding would give. Everything else on both pages is
+   already a 48 px target; this was the last thing under it, and it is the
+   navigation. */
+.nav a{font-size:14px;color:var(--dim);text-decoration:none;padding-block:11px}
   .nav a:hover{color:#fff}
   .nav a[aria-current="page"]{color:#fff}
   .nav a:focus-visible{outline:2px solid #fff;outline-offset:3px;border-radius:3px}
