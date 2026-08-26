@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pricing — Habsheet</title>
+<meta name="description" content="Habsheet pricing for UK caravan and motorhome habitation engineers. From £29 a month, with two months free on annual billing.">
+<style>
+  :root{
+    --bg:#0f1114; --card:#1d2226; --raise:#12181d;
+    --ink:#fff; --body:#c8ced4; --dim:#8b9299; --faint:#5d666e;
+    --line:#242a30; --rule:#2c333a;
+    --sheet:#f1f2f1; --sheetink:#111;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding-inline:24px}
+  a{color:#fff}
+
+  /* ---- header ---- */
+  header{display:flex;align-items:center;gap:14px;padding-block:40px 0}
+  .mark{width:38px;height:38px;flex:none}
+  .name{font-size:14px;letter-spacing:.22em;text-transform:uppercase;font-weight:600}
+  .nav{margin-left:auto;display:flex;gap:22px}
+  .nav a{font-size:14px;color:var(--dim);text-decoration:none}
+  .nav a:hover{color:#fff}
+  .nav a[aria-current="page"]{color:#fff}
+  .nav a:focus-visible{outline:2px solid #fff;outline-offset:3px;border-radius:3px}
+
+  /* ---- hero ---- */
+  .hero{padding-block:56px 40px;max-width:660px}
+  .eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);
+           font-weight:600;margin:0 0 16px}
+  h1{font-size:38px;line-height:1.18;font-weight:600;letter-spacing:-.02em;margin:0 0 18px}
+  .lede{font-size:18px;color:var(--body);margin:0}
+
+  /* ---- billing toggle ---- */
+  .billing{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding-block:8px 36px}
+  .seg{display:inline-flex;background:var(--card);border-radius:10px;padding:4px;gap:4px}
+  .seg button{
+    appearance:none;border:0;background:transparent;color:var(--dim);
+    font:600 14px/1 inherit;padding:10px 18px;border-radius:7px;cursor:pointer;
+  }
+  .seg button[aria-pressed="true"]{background:#fff;color:#0f1114}
+  .seg button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+  .saver{font-size:14px;color:var(--dim)}
+
+  /* ---- the sheet ---- */
+  .plate{
+    background:var(--sheet);color:var(--sheetink);
+    border-radius:14px;overflow:hidden;
+  }
+  .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{border-collapse:collapse;width:100%;min-width:860px;
+        font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+  caption{
+    text-align:left;padding:22px 24px 0;font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:#5b6168;font-weight:700;
+  }
+  th,td{text-align:left;padding:11px 16px;border-bottom:1px solid #d6d9d6;font-size:14px}
+  thead th{vertical-align:bottom;border-bottom:2px solid #111;padding-top:18px}
+  tbody th{font-weight:400;color:#2a2f34;width:34%}
+  td{text-align:center;width:16.5%;color:#2a2f34}
+  .tier{font-size:19px;font-weight:700;letter-spacing:-.01em;display:block;margin-bottom:2px}
+  .who{display:block;font-size:12px;color:#6a7079;font-weight:400;margin-bottom:12px}
+  .price{display:block;font-size:27px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+  .per{display:block;font-size:12px;color:#6a7079;margin-top:3px}
+  .pick{background:#e6e8e6}
+  thead th.pick{border-bottom-color:#111}
+  .flag{
+    display:inline-block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+    background:#111;color:#f1f2f1;border-radius:4px;padding:3px 7px;font-weight:700;
+    margin-bottom:8px;
+  }
+  .grp th{
+    background:#e2e5e2;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:#4a5058;font-weight:700;padding-block:9px;
+  }
+  .grp td{background:#e2e5e2}
+  .yes::after{
+    content:"";display:inline-block;width:20px;height:20px;border-radius:50%;
+    background:#111 no-repeat center/11px 11px;
+    background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M1.6 6.4l2.9 3L10.4 2.6'/%3E%3C/svg%3E");
+    vertical-align:-4px;
+  }
+  .no::after{content:"–";color:#a8aeb4}
+  .soon{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#6a7079;font-weight:600}
+  .val{font-weight:600;color:#111}
+  .key{padding:14px 24px 20px;font-size:12px;color:#6a7079}
+  .key b{color:#111;font-weight:700}
+
+  .hint{font-size:13px;color:var(--dim);padding-block:12px 0}
+  @media(min-width:900px){.hint{display:none}}
+
+  /* ---- what you're paying for ---- */
+  .why{padding-block:72px 0}
+  h2{font-size:26px;line-height:1.25;font-weight:600;letter-spacing:-.01em;margin:0 0 14px}
+  .why p{color:var(--body);max-width:640px;margin:0 0 18px}
+  .cols{display:grid;grid-template-columns:1fr;gap:0;margin-top:34px;
+        border-top:1px solid var(--line)}
+  .cols div{padding-block:18px;border-bottom:1px solid var(--line)}
+  .cols h3{margin:0 0 5px;font-size:16px;font-weight:600}
+  .cols p{margin:0;font-size:15px;color:var(--body)}
+  @media(min-width:760px){
+    .cols{grid-template-columns:1fr 1fr;column-gap:44px}
+    .cols div:nth-last-child(-n+2){border-bottom:0}
+  }
+
+  /* ---- questions ---- */
+  .qa{padding-block:66px 0}
+  details{border-bottom:1px solid var(--line)}
+  summary{
+    cursor:pointer;padding-block:17px;font-weight:600;font-size:16px;list-style:none;
+    display:flex;align-items:center;gap:12px;
+  }
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"+";color:var(--dim);font-weight:400;font-size:19px;line-height:1}
+  details[open] summary::before{content:"–"}
+  summary:focus-visible{outline:2px solid #fff;outline-offset:3px;border-radius:3px}
+  details p{margin:0 0 18px;padding-left:24px;color:var(--body);font-size:15px;max-width:640px}
+
+  /* ---- foot ---- */
+  .cta{padding-block:66px 0}
+  .cta a.btn{
+    display:inline-block;background:#fff;color:#0f1114;text-decoration:none;
+    font-weight:600;font-size:15px;padding:14px 26px;border-radius:10px;margin-top:6px;
+  }
+  .cta a.btn:hover{background:#e6e8e6}
+  footer{margin-top:66px;border-top:1px solid var(--line);padding-block:24px 60px;
+         color:var(--dim);font-size:14px}
+  footer a{text-decoration:none}
+  footer a:hover{text-decoration:underline}
+
+  @media(max-width:560px){
+    h1{font-size:29px} .lede{font-size:17px} .hero{padding-block:40px 32px}
+  }
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <svg class="mark" viewBox="0 0 1024 1024" aria-label="Habsheet">
+      <rect width="1024" height="1024" fill="#0f1114"/>
+      <path fill="#fff" d="M160 112h704v800H160z"/>
+      <path fill="#0f1114" d="M232 184h560v656H232z"/>
+      <path fill="#fff" d="M268 240h488v56H268zM268 372h488v56H268zM268 504h488v56H268zM476 560h56v280h-56z"/>
+      <path fill="none" stroke="#fff" stroke-width="56" stroke-linecap="round"
+            stroke-linejoin="round" d="M578 700l58 60 106-140"/>
+    </svg>
+    <span class="name">Habsheet</span>
+    <nav class="nav"><a href="/">What it does</a><a href="/pricing.html" aria-current="page">Pricing</a></nav>
+  </header>
+
+  <section class="hero">
+    <p class="eyebrow">Pricing</p>
+    <h1>Stop taking the paperwork home.</h1>
+    <p class="lede">The check sheet and the damp report are finished beside the van, signed,
+    and handed over as one PDF before you pack up. What you are paying for is the evening
+    afterwards.</p>
+  </section>
+
+  <div class="billing">
+    <div class="seg" role="group" aria-label="Billing period">
+      <button type="button" id="b-mo" aria-pressed="false">Monthly</button>
+      <button type="button" id="b-yr" aria-pressed="true">Annual</button>
+    </div>
+    <span class="saver" id="saver">Two months free</span>
+  </div>
+
+  <div class="plate">
+    <div class="scroll">
+      <table>
+        <caption>Habsheet plans</caption>
+        <thead>
+          <tr>
+            <th scope="col"><span class="tier">&nbsp;</span><span class="who">&nbsp;</span></th>
+            <th scope="col">
+              <span class="tier">Starter</span>
+              <span class="who">One engineer</span>
+              <span class="price" data-mo="£29" data-yr="£290">£290</span>
+              <span class="per" data-mo="per month" data-yr="per year">per year</span>
+            </th>
+            <th scope="col" class="pick">
+              <span class="flag">Most workshops</span>
+              <span class="tier">Pro</span>
+              <span class="who">One engineer</span>
+              <span class="price" data-mo="£39" data-yr="£390">£390</span>
+              <span class="per" data-mo="per month" data-yr="per year">per year</span>
+            </th>
+            <th scope="col">
+              <span class="tier">Business</span>
+              <span class="who">Up to five engineers</span>
+              <span class="price" data-mo="£79" data-yr="£790">£790</span>
+              <span class="per" data-mo="per month" data-yr="per year">per year</span>
+            </th>
+            <th scope="col">
+              <span class="tier">Business Plus</span>
+              <span class="who">Unlimited engineers</span>
+              <span class="price" data-mo="£139" data-yr="£1,390">£1,390</span>
+              <span class="per" data-mo="per month" data-yr="per year">per year</span>
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr class="grp"><th scope="colgroup" colspan="5">The job</th></tr>
+          <tr><th scope="row">Habitation service check</th>
+              <td class="yes"></td><td class="yes pick"></td><td class="yes"></td><td class="yes"></td></tr>
+          <tr><th scope="row">Damp report</th>
+              <td class="yes"></td><td class="yes pick"></td><td class="yes"></td><td class="yes"></td></tr>
+          <tr><th scope="row">Tourer and motorhome</th>
+              <td class="yes"></td><td class="yes pick"></td><td class="yes"></td><td class="yes"></td></tr>
+          <tr><th scope="row">Readings on the vehicle diagram</th>
+              <td class="yes"></td><td class="yes pick"></td><td class="yes"></td><td class="yes"></td></tr>
+          <tr><th scope="row">Drawing tools — hatch, fill, notes</th>
+              <td class="yes"></td><td class="yes pick"></td><td class="yes"></td><td class="yes"></td></tr>
+          <tr><th scope="row">Signatures captured on site</th>
+              <td class="yes"></td><td class="yes pick"></td><td class="yes"></td><td class="yes"></td></tr>
+          <tr><th scope="row">One PDF, both documents</th>
+              <td class="yes"></td><td class="yes pick"></td><td class="yes"></td><td class="yes"></td></tr>
+          <tr><th scope="row">Jobs a year</th>
+              <td class="val">50</td><td class="val pick">Unlimited</td>
+              <td class="val">Unlimited</td><td class="val">Unlimited</td></tr>
+
+          <tr class="grp"><th scope="colgroup" colspan="5">The second time you see a van</th></tr>
+          <tr><th scope="row">Clients and vehicles kept</th>
+              <td class="yes"></td><td class="yes pick"></td><td class="yes"></td><td class="yes"></td></tr>
+          <tr><th scope="row">Damp readings year on year</th>
+              <td class="yes"></td><td class="yes pick"></td><td class="yes"></td><td class="yes"></td></tr>
+          <tr><th scope="row">Start from last year's job</th>
+              <td class="no"></td><td class="yes pick"></td><td class="yes"></td><td class="yes"></td></tr>
+          <tr><th scope="row">Saved diagram per make and model</th>
+              <td class="no"></td><td class="yes pick"></td><td class="yes"></td><td class="yes"></td></tr>
+          <tr><th scope="row">Your stamp on the sheet</th>
+              <td class="no"></td><td class="yes pick"></td><td class="yes"></td><td class="yes"></td></tr>
+
+          <tr class="grp"><th scope="colgroup" colspan="5">Off the tablet</th></tr>
+          <tr><th scope="row">Backed up, not just on the device</th>
+              <td class="no"></td><td class="pick"><span class="soon">Soon</span></td>
+              <td><span class="soon">Soon</span></td><td><span class="soon">Soon</span></td></tr>
+          <tr><th scope="row">Sign in at habsheet.com</th>
+              <td class="no"></td><td class="pick"><span class="soon">Soon</span></td>
+              <td><span class="soon">Soon</span></td><td><span class="soon">Soon</span></td></tr>
+          <tr><th scope="row">Shared clients across engineers</th>
+              <td class="no"></td><td class="no pick"></td>
+              <td><span class="soon">Soon</span></td><td><span class="soon">Soon</span></td></tr>
+          <tr><th scope="row">Prepare a job for someone else to finish</th>
+              <td class="no"></td><td class="no pick"></td>
+              <td><span class="soon">Soon</span></td><td><span class="soon">Soon</span></td></tr>
+          <tr><th scope="row">Rebooking reminders</th>
+              <td class="no"></td><td class="no pick"></td>
+              <td><span class="soon">Soon</span></td><td><span class="soon">Soon</span></td></tr>
+
+          <tr class="grp"><th scope="colgroup" colspan="5">Your own paperwork</th></tr>
+          <tr><th scope="row">Documents built to your layout</th>
+              <td class="no"></td><td class="no pick"></td><td class="no"></td>
+              <td><span class="soon">Soon</span></td></tr>
+          <tr><th scope="row">Invoices</th>
+              <td class="no"></td><td class="no pick"></td><td class="no"></td>
+              <td><span class="soon">Soon</span></td></tr>
+
+          <tr class="grp"><th scope="colgroup" colspan="5">Support</th></tr>
+          <tr><th scope="row">Email support</th>
+              <td class="yes"></td><td class="yes pick"></td><td class="yes"></td><td class="yes"></td></tr>
+          <tr><th scope="row">Same working day, and a phone number</th>
+              <td class="no"></td><td class="no pick"></td><td class="yes"></td><td class="yes"></td></tr>
+          <tr><th scope="row">Template updates included</th>
+              <td class="yes"></td><td class="yes pick"></td><td class="yes"></td><td class="yes"></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="key"><span class="yes" style="margin-right:4px"></span> included &nbsp;·&nbsp; <b>–</b> not on this plan
+      &nbsp;·&nbsp; <b>Soon</b> in build, and included when it lands at no extra cost.
+      Prices exclude VAT.</p>
+  </div>
+
+  <p class="hint">Drag the table sideways to see every plan.</p>
+
+  <section class="why">
+    <h2>What you are actually buying</h2>
+    <p>Not the pad. A pad is under a pound. What costs you is everything that happens after
+    the van drives off — the scribbled notes, the writing up, the scanning, the email that
+    goes out two days later.</p>
+
+    <div class="cols">
+      <div>
+        <h3>The report leaves with the customer</h3>
+        <p>Filled in, signed and handed over on the driveway, rather than typed up at the
+        kitchen table that evening.</p>
+      </div>
+      <div>
+        <h3>Nothing is written twice</h3>
+        <p>Your details, the client, the van, the meter, the conditions — all carried in
+        before you start. You enter what you found, and nothing else.</p>
+      </div>
+      <div>
+        <h3>The van's history is there next year</h3>
+        <p>Last year's readings sit on the same diagram, in the same places. A panel creeping
+        up is something you see rather than something in a folder.</p>
+      </div>
+      <div>
+        <h3>Nothing is lost</h3>
+        <p>Every reading is written to the device as you take it. It holds up to being pulled
+        out of a filing cabinet a year later, which is when it matters.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="qa">
+    <h2>Questions</h2>
+
+    <details>
+      <summary>Can I try it before I pay?</summary>
+      <p>Yes. Every plan starts with a free trial on your own device, with no card. If it
+      does not suit how you work, it costs you nothing.</p>
+    </details>
+
+    <details>
+      <summary>My season is only eight months. Am I paying for the winter?</summary>
+      <p>On monthly billing you can stop and start whenever you like, and your jobs stay
+      where they are. Annual billing is cheaper if you work all year.</p>
+    </details>
+
+    <details>
+      <summary>What happens to my jobs if I stop paying?</summary>
+      <p>They stay readable and exportable. You cannot start new ones until you subscribe
+      again, but nothing you have already done is taken away from you.</p>
+    </details>
+
+    <details>
+      <summary>The sheets get revised. Who keeps up with that?</summary>
+      <p>We do, on every plan, at no extra cost. When a sheet is revised you are working
+      from the new one, rather than finding out from a customer.</p>
+    </details>
+
+    <details>
+      <summary>Two of us work out of the same workshop. Which plan?</summary>
+      <p>Business. One library of clients and vehicles that everybody sees, rather than two
+      tablets that know nothing about each other.</p>
+    </details>
+
+    <details>
+      <summary>Does it work without a signal?</summary>
+      <p>Yes. Everything happens on the tablet. A driveway with no bars is the normal case,
+      not the exception.</p>
+    </details>
+
+    <details>
+      <summary>What does "Soon" mean?</summary>
+      <p>It is being built now and it is included in the plan it sits in when it arrives.
+      You will not be asked for more money for it.</p>
+    </details>
+  </section>
+
+  <section class="cta">
+    <h2>Try it on your next job.</h2>
+    <p style="color:var(--body);max-width:640px;margin:0">Tell us what you drive out to and
+    we will get you set up.</p>
+    <a class="btn" href="mailto:faruq@habsheet.com">faruq@habsheet.com</a>
+  </section>
+
+  <footer>
+    <a href="mailto:faruq@habsheet.com">faruq@habsheet.com</a><br>
+    Habsheet — United Kingdom
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var mo=document.getElementById('b-mo'), yr=document.getElementById('b-yr'),
+      saver=document.getElementById('saver'),
+      cells=document.querySelectorAll('[data-mo]');
+  function set(period){
+    var annual = period==='yr';
+    yr.setAttribute('aria-pressed', annual);
+    mo.setAttribute('aria-pressed', !annual);
+    saver.textContent = annual ? 'Two months free' : 'Stop and start whenever you like';
+    for(var i=0;i<cells.length;i++){
+      cells[i].textContent = cells[i].getAttribute(annual?'data-yr':'data-mo');
+    }
+  }
+  mo.addEventListener('click',function(){set('mo')});
+  yr.addEventListener('click',function(){set('yr')});
+})();
+</script>
+
+</body>
+</html>
