@@ -18,7 +18,6 @@
        palette in both schemes. On a light page it needs the drawn edge the
        dark page gave it for free. */
     --sheet:#f1f2f1; --sheetink:#111; --edge:#aab2ba;
-    --act:#1a63c4;
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
@@ -53,22 +52,6 @@ header{display:flex;align-items:center;gap:14px;padding-block:28px 0}
   .nav a:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:3px}
 
   /* ---- hero ---- */
-
-  /* THE PITCH GETS ITS OWN GROUND TOO.
-     The intro was the same grey as everything above and below it, so the page
-     opened with no weight at all — PlanRadar's blue band is doing the work of
-     saying "this is the offer" before a word is read. Ours uses the action
-     colour the app already spends on the EXPORT button, so the site and the
-     thing it sells are the same blue.
-
-     White on it is 5.79:1 and the tinted copy 5.04:1, so the band carries body
-     text and not only a headline. */
-  .hero-band{background:var(--act);padding-block:52px 54px}
-  .hero-band .eyebrow{color:#e8f0fb}
-  .hero-band h1{color:#fff;max-width:19ch}
-  .hero-band .lede{color:#e8f0fb;max-width:56ch}
-  .hero-band .trial{margin:22px 0 0;font-size:15.5px;font-weight:600;color:#fff}
-  @media (max-width:700px){ .hero-band{padding-block:36px 38px} }
   .hero{padding-block:56px 40px;max-width:660px}
   .eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);
            font-weight:600;margin:0 0 16px}
@@ -84,13 +67,9 @@ header{display:flex;align-items:center;gap:14px;padding-block:28px 0}
   }
   .seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
   .seg button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
-  /* It reads as an instruction, so it is one. 44 px of target, same floor
-     as the nav — this is tapped in a yard. */
-  .saver{font-size:14px;color:var(--ink);font-weight:600;text-decoration:none;
-         display:inline-flex;align-items:center;min-height:44px}
-  .saver:hover{text-decoration:underline}
-  .plans{background:var(--card);
-         border-bottom:1px solid var(--rule);padding-block:40px 48px}
+  .saver{font-size:14px;color:var(--dim)}
+  .plans{background:var(--card);border-top:1px solid var(--rule);
+         border-bottom:1px solid var(--rule);padding-block:40px 48px;margin-top:26px}
 
 
   /* ---- the sheet ---- */
@@ -261,20 +240,15 @@ header{display:flex;align-items:center;gap:14px;padding-block:28px 0}
     <nav class="nav"><a href="/">What it does</a><a href="/pricing.html" aria-current="page">Pricing</a></nav>
   </header>
 
-</div>
+  <section class="hero">
+    <p class="eyebrow">Pricing</p>
+    <h1>Start your free trial and stop taking the paperwork home.</h1>
+    <p class="lede">The check sheet and the damp report are finished beside the van, signed,
+    and handed over as one PDF before you pack up. What you are paying for is the evening
+    afterwards.</p>
+  </section>
 
-<section class="hero-band">
-  <div class="wrap">
-    <section class="hero">
-      <p class="eyebrow">Pricing</p>
-      <h1>Start your free trial and stop taking the paperwork home.</h1>
-      <p class="lede">The check sheet and the damp report are finished beside the van, signed,
-      and handed over as one PDF before you pack up. What you are paying for is the evening
-      afterwards.</p>
-      <p class="trial">Seven days. No card needed.</p>
-    </section>
-  </div>
-</section>
+</div>
 
 <!-- THE PRICING SECTION IS ITS OWN BAND, edge to edge.
      The intro says what you are buying and this says what it costs, and they
@@ -293,7 +267,7 @@ header{display:flex;align-items:center;gap:14px;padding-block:28px 0}
       <button type="button" id="b-mo" aria-pressed="false">Monthly</button>
       <button type="button" id="b-yr" aria-pressed="true">Annual</button>
     </div>
-    <a class="saver" id="saver" href="mailto:faruq@habsheet.com?subject=Habsheet%20—%20free%20trial">Try now for free</a>
+    <span class="saver" id="saver">Try now for free</span>
   </div>
 
   <div class="plate">
