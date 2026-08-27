@@ -63,7 +63,6 @@ header{display:flex;align-items:center;gap:14px;padding-block:28px 0}
   .seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
   .seg button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
   .saver{font-size:14px;color:var(--dim)}
-  .vat{font-size:14px;color:var(--dim)}
   .plans{background:var(--card);border-top:1px solid var(--rule);
          border-bottom:1px solid var(--rule);padding-block:40px 48px;margin-top:26px}
 
@@ -71,7 +70,7 @@ header{display:flex;align-items:center;gap:14px;padding-block:28px 0}
   /* ---- the sheet ---- */
   .plate{
     background:var(--card);color:var(--sheetink);
-    border-radius:14px;overflow:hidden;border:1px solid var(--edge);
+    border-radius:14px;overflow:hidden;
   }
   .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
   table{border-collapse:collapse;width:100%;min-width:680px;
@@ -81,6 +80,16 @@ header{display:flex;align-items:center;gap:14px;padding-block:28px 0}
     text-transform:uppercase;color:#5b6168;font-weight:700;
   }
   th,td{text-align:left;padding:11px 16px;border-bottom:1px solid #d6d9d6;font-size:14px}
+  /* Every tier cell carries its left rule; the last one closes the run.
+     #d9dde1 rather than something lighter: at #e4e7ea the rule measured 1.01:1
+     against the tinted Pro column and disappeared exactly where a tier most
+     needs an edge. This reads on white (1.37) and on the tint (1.11), and is
+     still lighter than the row rules at 1.42 — the rows are what you read
+     across, and verticals matching them would turn this into a grid. */
+  thead th + th, tbody td{border-left:1px solid #d9dde1}
+  thead th:last-child, tbody td:last-child{border-right:1px solid #d9dde1}
+  /* A group heading spans the tiers, so it must not be cut up by them. */
+  .grp th{border-left:0;border-right:0}
   thead th{vertical-align:bottom;border-bottom:2px solid #111;padding-top:18px}
   tbody th{font-weight:400;color:#2a2f34;width:34%}
   td{text-align:center;width:22%;color:#2a2f34}
@@ -203,7 +212,6 @@ header{display:flex;align-items:center;gap:14px;padding-block:28px 0}
       <button type="button" id="b-yr" aria-pressed="true">Annual</button>
     </div>
     <span class="saver" id="saver">Two months free</span>
-    <span class="vat">Prices exclude VAT</span>
   </div>
 
   <div class="plate">
