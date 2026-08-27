@@ -18,6 +18,7 @@
        palette in both schemes. On a light page it needs the drawn edge the
        dark page gave it for free. */
     --sheet:#f1f2f1; --sheetink:#111; --edge:#aab2ba;
+    --act:#1a63c4;
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
@@ -33,6 +34,11 @@
   /* 28px, the same on both pages. The nav's own 11px supplies the breathing room
    that a taller header used to; 40 pushed the content down for nothing. */
 header{display:flex;align-items:center;gap:14px;padding-block:28px 0}
+  /* The whole lockup is the way home, not just the word. On a phone the
+     mark is the bigger target and it is the thing people press. */
+  .home{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;
+        min-height:44px}
+  .home:focus-visible{outline:2px solid var(--ink);outline-offset:4px;border-radius:4px}
   .mark{width:38px;height:38px;flex:none}
   .name{font-size:14px;letter-spacing:.22em;text-transform:uppercase;font-weight:600}
   .nav{margin-left:auto;display:flex;gap:22px}
@@ -47,6 +53,22 @@ header{display:flex;align-items:center;gap:14px;padding-block:28px 0}
   .nav a:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:3px}
 
   /* ---- hero ---- */
+
+  /* THE PITCH GETS ITS OWN GROUND TOO.
+     The intro was the same grey as everything above and below it, so the page
+     opened with no weight at all — PlanRadar's blue band is doing the work of
+     saying "this is the offer" before a word is read. Ours uses the action
+     colour the app already spends on the EXPORT button, so the site and the
+     thing it sells are the same blue.
+
+     White on it is 5.79:1 and the tinted copy 5.04:1, so the band carries body
+     text and not only a headline. */
+  .hero-band{background:var(--act);padding-block:52px 54px}
+  .hero-band .eyebrow{color:#e8f0fb}
+  .hero-band h1{color:#fff;max-width:19ch}
+  .hero-band .lede{color:#e8f0fb;max-width:56ch}
+  .hero-band .trial{margin:22px 0 0;font-size:15.5px;font-weight:600;color:#fff}
+  @media (max-width:700px){ .hero-band{padding-block:36px 38px} }
   .hero{padding-block:56px 40px;max-width:660px}
   .eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);
            font-weight:600;margin:0 0 16px}
@@ -62,9 +84,13 @@ header{display:flex;align-items:center;gap:14px;padding-block:28px 0}
   }
   .seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
   .seg button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
-  .saver{font-size:14px;color:var(--dim)}
-  .plans{background:var(--card);border-top:1px solid var(--rule);
-         border-bottom:1px solid var(--rule);padding-block:40px 48px;margin-top:26px}
+  /* It reads as an instruction, so it is one. 44 px of target, same floor
+     as the nav — this is tapped in a yard. */
+  .saver{font-size:14px;color:var(--ink);font-weight:600;text-decoration:none;
+         display:inline-flex;align-items:center;min-height:44px}
+  .saver:hover{text-decoration:underline}
+  .plans{background:var(--card);
+         border-bottom:1px solid var(--rule);padding-block:40px 48px}
 
 
   /* ---- the sheet ---- */
@@ -221,27 +247,34 @@ header{display:flex;align-items:center;gap:14px;padding-block:28px 0}
 <div class="wrap">
 
   <header>
-    <svg class="mark" viewBox="0 0 1024 1024" aria-label="Habsheet">
-      <rect width="1024" height="1024" fill="#0f1114"/>
-      <path fill="#fff" d="M160 112h704v800H160z"/>
-      <path fill="#0f1114" d="M232 184h560v656H232z"/>
-      <path fill="#fff" d="M268 240h488v56H268zM268 372h488v56H268zM268 504h488v56H268zM476 560h56v280h-56z"/>
-      <path fill="none" stroke="#fff" stroke-width="56" stroke-linecap="round"
-            stroke-linejoin="round" d="M578 700l58 60 106-140"/>
-    </svg>
-    <span class="name">Habsheet</span>
+    <a class="home" href="/" aria-label="Habsheet — home">
+      <svg class="mark" viewBox="0 0 1024 1024" aria-label="Habsheet">
+        <rect width="1024" height="1024" fill="#0f1114"/>
+        <path fill="#fff" d="M160 112h704v800H160z"/>
+        <path fill="#0f1114" d="M232 184h560v656H232z"/>
+        <path fill="#fff" d="M268 240h488v56H268zM268 372h488v56H268zM268 504h488v56H268zM476 560h56v280h-56z"/>
+        <path fill="none" stroke="#fff" stroke-width="56" stroke-linecap="round"
+              stroke-linejoin="round" d="M578 700l58 60 106-140"/>
+      </svg>
+      <span class="name">Habsheet</span>
+    </a>
     <nav class="nav"><a href="/">What it does</a><a href="/pricing.html" aria-current="page">Pricing</a></nav>
   </header>
 
-  <section class="hero">
-    <p class="eyebrow">Pricing</p>
-    <h1>Stop taking the paperwork home.</h1>
-    <p class="lede">The check sheet and the damp report are finished beside the van, signed,
-    and handed over as one PDF before you pack up. What you are paying for is the evening
-    afterwards.</p>
-  </section>
-
 </div>
+
+<section class="hero-band">
+  <div class="wrap">
+    <section class="hero">
+      <p class="eyebrow">Pricing</p>
+      <h1>Start your free trial and stop taking the paperwork home.</h1>
+      <p class="lede">The check sheet and the damp report are finished beside the van, signed,
+      and handed over as one PDF before you pack up. What you are paying for is the evening
+      afterwards.</p>
+      <p class="trial">Seven days. No card needed.</p>
+    </section>
+  </div>
+</section>
 
 <!-- THE PRICING SECTION IS ITS OWN BAND, edge to edge.
      The intro says what you are buying and this says what it costs, and they
@@ -260,7 +293,7 @@ header{display:flex;align-items:center;gap:14px;padding-block:28px 0}
       <button type="button" id="b-mo" aria-pressed="false">Monthly</button>
       <button type="button" id="b-yr" aria-pressed="true">Annual</button>
     </div>
-    <span class="saver" id="saver">7 days free trial</span>
+    <a class="saver" id="saver" href="mailto:faruq@habsheet.com?subject=Habsheet%20—%20free%20trial">Try now for free</a>
   </div>
 
   <div class="plate">
