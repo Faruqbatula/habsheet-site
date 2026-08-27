@@ -76,8 +76,8 @@ header{display:flex;align-items:center;gap:14px;padding-block:28px 0}
   table{border-collapse:collapse;width:100%;min-width:680px;
         font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
   caption{
-    text-align:left;padding:22px 24px 0;font-size:11px;letter-spacing:.14em;
-    text-transform:uppercase;color:#5b6168;font-weight:700;
+    position:absolute;width:1px;height:1px;overflow:hidden;
+    clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;
   }
   th,td{text-align:left;padding:11px 16px;border-bottom:1px solid #d6d9d6;font-size:14px}
   /* Every tier cell carries its left rule; the last one closes the run.
@@ -97,7 +97,7 @@ header{display:flex;align-items:center;gap:14px;padding-block:28px 0}
   .who{display:block;font-size:12px;color:#626871;font-weight:400;margin-bottom:12px}
   .price{display:block;font-size:27px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
   .per{display:block;font-size:12px;color:#626871;margin-top:3px}
-  .pick{background:#e6e8e6}
+  .pick{background:var(--bg)}
   thead th.pick{border-bottom-color:#111}
   .flag{
     display:inline-block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;
@@ -105,10 +105,10 @@ header{display:flex;align-items:center;gap:14px;padding-block:28px 0}
     margin-bottom:8px;
   }
   .grp th{
-    background:#e2e5e2;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    background:var(--bg);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
     color:#4a5058;font-weight:700;padding-block:9px;
   }
-  .grp td{background:#e2e5e2}
+  .grp td{background:var(--bg)}
   .yes::after{
     content:"";display:inline-block;width:20px;height:20px;border-radius:50%;
     background:#111 no-repeat center/11px 11px;
@@ -211,7 +211,7 @@ header{display:flex;align-items:center;gap:14px;padding-block:28px 0}
       <button type="button" id="b-mo" aria-pressed="false">Monthly</button>
       <button type="button" id="b-yr" aria-pressed="true">Annual</button>
     </div>
-    <span class="saver" id="saver">Two months free</span>
+    <span class="saver" id="saver">7 days free trial</span>
   </div>
 
   <div class="plate">
@@ -403,13 +403,11 @@ header{display:flex;align-items:center;gap:14px;padding-block:28px 0}
 <script>
 (function(){
   var mo=document.getElementById('b-mo'), yr=document.getElementById('b-yr'),
-      saver=document.getElementById('saver'),
       cells=document.querySelectorAll('[data-mo]');
   function set(period){
     var annual = period==='yr';
     yr.setAttribute('aria-pressed', annual);
     mo.setAttribute('aria-pressed', !annual);
-    saver.textContent = annual ? 'Two months free' : 'Stop and start whenever you like';
     for(var i=0;i<cells.length;i++){
       cells[i].textContent = cells[i].getAttribute(annual?'data-yr':'data-mo');
     }
