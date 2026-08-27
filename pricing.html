@@ -63,64 +63,38 @@ header{display:flex;align-items:center;gap:14px;padding-block:28px 0}
   .seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
   .seg button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
   .saver{font-size:14px;color:var(--dim)}
-  /* THE PLANS AS CARDS, ABOVE THE MATRIX.
-     The prices used to live only in a table header, so there was nothing to
-     act on next to them — the single "email us" button sat three thousand
-     pixels further down, past the whole comparison. A workshop owner who has
-     decided on Pro by the second row had to scroll the entire table to do
-     anything about it. Each card carries its own way out, and names the plan
-     in the subject line so the reply already knows what it is about.
-
-     The prices here carry the same data-mo / data-yr attributes as the ones in
-     the table, so the billing toggle drives both and they cannot drift. */
-  .tiers{display:grid;gap:14px;grid-template-columns:minmax(0,1fr);margin:0 0 30px}
-  @media(min-width:640px){.tiers{grid-template-columns:repeat(2,minmax(0,1fr))}}
-  @media(min-width:1040px){.tiers{grid-template-columns:repeat(4,minmax(0,1fr))}}
-  .tc{background:var(--card);border:1px solid var(--rule);border-radius:12px;
-      padding:20px 20px 22px;display:flex;flex-direction:column}
-  .tc-flag{display:inline-block;align-self:flex-start;background:var(--ink);color:var(--bg);
-      font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
-      border-radius:4px;padding:3px 7px;margin-bottom:10px}
-  .tc-name{font-size:19px;font-weight:700;letter-spacing:-.01em}
-  .tc-who{font-size:13.5px;color:var(--dim);margin-top:2px}
-  .tc-price{font-size:31px;font-weight:700;letter-spacing:-.02em;margin-top:14px}
-  .tc-per{font-size:13px;color:var(--dim);margin-top:2px}
-  /* 44 px of target, same floor as the nav, on a page read on a phone in a yard. */
-  .tc-cta{margin-top:18px;display:flex;align-items:center;justify-content:center;min-height:44px;
-      border-radius:8px;background:var(--ink);color:var(--bg);text-decoration:none;
-      font-weight:600;font-size:15px}
-  .tc-cta:hover{background:#2b3238}
-  /* The one most workshops take is filled rather than outlined — the same
-     inversion the app uses for its primary pill. */
-  .tc.pick{background:var(--ink);border-color:var(--ink)}
-  .tc.pick .tc-flag{background:var(--bg);color:var(--ink)}
-  .tc.pick .tc-name,.tc.pick .tc-price{color:#fff}
-  .tc.pick .tc-who,.tc.pick .tc-per{color:#c3ccd4}
-  .tc.pick .tc-cta{background:#fff;color:var(--ink)}
-  .tc.pick .tc-cta:hover{background:#e6e9eb}
-
   .vat{font-size:14px;color:var(--dim)}
+  .plans{background:var(--card);border-top:1px solid var(--rule);
+         border-bottom:1px solid var(--rule);padding-block:40px 48px;margin-top:26px}
+
 
   /* ---- the sheet ---- */
   .plate{
-    background:var(--sheet);color:var(--sheetink);
+    background:var(--card);color:var(--sheetink);
     border-radius:14px;overflow:hidden;border:1px solid var(--edge);
   }
   .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
-  table{border-collapse:collapse;width:100%;min-width:860px;
+  table{border-collapse:collapse;width:100%;min-width:680px;
         font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
   caption{
     text-align:left;padding:22px 24px 0;font-size:11px;letter-spacing:.14em;
     text-transform:uppercase;color:#5b6168;font-weight:700;
   }
   th,td{text-align:left;padding:11px 16px;border-bottom:1px solid #d6d9d6;font-size:14px}
-  thead th{vertical-align:bottom;border-bottom:2px solid #111;padding-top:10px;padding-bottom:12px}
+  thead th{vertical-align:bottom;border-bottom:2px solid #111;padding-top:18px}
   tbody th{font-weight:400;color:#2a2f34;width:34%}
-  td{text-align:center;width:16.5%;color:#2a2f34}
-  .tier{font-size:17px;font-weight:700;letter-spacing:-.01em;display:block}
-  .who{display:block;font-size:12px;color:#626871;font-weight:400}
+  td{text-align:center;width:22%;color:#2a2f34}
+  .tier{font-size:19px;font-weight:700;letter-spacing:-.01em;display:block;margin-bottom:2px}
+  .who{display:block;font-size:12px;color:#626871;font-weight:400;margin-bottom:12px}
+  .price{display:block;font-size:27px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+  .per{display:block;font-size:12px;color:#626871;margin-top:3px}
   .pick{background:#e6e8e6}
   thead th.pick{border-bottom-color:#111}
+  .flag{
+    display:inline-block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+    background:#111;color:#f1f2f1;border-radius:4px;padding:3px 7px;font-weight:700;
+    margin-bottom:8px;
+  }
   .grp th{
     background:#e2e5e2;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
     color:#4a5058;font-weight:700;padding-block:9px;
@@ -209,6 +183,20 @@ header{display:flex;align-items:center;gap:14px;padding-block:28px 0}
     afterwards.</p>
   </section>
 
+</div>
+
+<!-- THE PRICING SECTION IS ITS OWN BAND, edge to edge.
+     The intro says what you are buying and this says what it costs, and they
+     were the same flat grey from the header to the footer — one scroll with no
+     seam in it. A full-bleed change of ground is the cheapest way to say "that
+     was the pitch, this is the money", and it is what PlanRadar does with its
+     blue-to-white step. Ours is quieter because the palette is quieter, so the
+     boundary carries a hairline as well as the tone change.
+
+     It breaks out of .wrap deliberately: the band must reach the glass, and
+     the content inside it goes back into a .wrap of its own for the gutter. -->
+<section class="plans">
+  <div class="wrap">
   <div class="billing">
     <div class="seg" role="group" aria-label="Billing period">
       <button type="button" id="b-mo" aria-pressed="false">Monthly</button>
@@ -216,37 +204,6 @@ header{display:flex;align-items:center;gap:14px;padding-block:28px 0}
     </div>
     <span class="saver" id="saver">Two months free</span>
     <span class="vat">Prices exclude VAT</span>
-  </div>
-
-  <div class="tiers">
-      <div class="tc">
-        <span class="tc-name">Starter</span>
-        <span class="tc-who">One engineer</span>
-        <span class="tc-price" data-mo="£29" data-yr="£290">£290</span>
-        <span class="tc-per" data-mo="per month" data-yr="per year">per year</span>
-        <a class="tc-cta" href="mailto:faruq@habsheet.com?subject=Habsheet%20—%20Starter">Get set up</a>
-      </div>
-      <div class="tc pick">
-        <span class="tc-flag">Most workshops</span><span class="tc-name">Pro</span>
-        <span class="tc-who">One engineer</span>
-        <span class="tc-price" data-mo="£39" data-yr="£390">£390</span>
-        <span class="tc-per" data-mo="per month" data-yr="per year">per year</span>
-        <a class="tc-cta" href="mailto:faruq@habsheet.com?subject=Habsheet%20—%20Pro">Get set up</a>
-      </div>
-      <div class="tc">
-        <span class="tc-name">Business</span>
-        <span class="tc-who">Up to five engineers</span>
-        <span class="tc-price" data-mo="£79" data-yr="£790">£790</span>
-        <span class="tc-per" data-mo="per month" data-yr="per year">per year</span>
-        <a class="tc-cta" href="mailto:faruq@habsheet.com?subject=Habsheet%20—%20Business">Get set up</a>
-      </div>
-      <div class="tc">
-        <span class="tc-name">Business Plus</span>
-        <span class="tc-who">Unlimited engineers</span>
-        <span class="tc-price" data-mo="£139" data-yr="£1,390">£1,390</span>
-        <span class="tc-per" data-mo="per month" data-yr="per year">per year</span>
-        <a class="tc-cta" href="mailto:faruq@habsheet.com?subject=Habsheet%20—%20Business%20Plus">Get set up</a>
-      </div>
   </div>
 
   <div class="plate">
@@ -258,89 +215,92 @@ header{display:flex;align-items:center;gap:14px;padding-block:28px 0}
             <th scope="col"><span class="tier">&nbsp;</span><span class="who">&nbsp;</span></th>
             <th scope="col">
               <span class="tier">Starter</span>
+              <span class="who">One engineer</span>
+              <span class="price" data-mo="£29" data-yr="£290">£290</span>
+              <span class="per" data-mo="per month" data-yr="per year">per year</span>
             </th>
             <th scope="col" class="pick">
+              <span class="flag">Most workshops</span>
               <span class="tier">Pro</span>
+              <span class="who">One engineer</span>
+              <span class="price" data-mo="£39" data-yr="£390">£390</span>
+              <span class="per" data-mo="per month" data-yr="per year">per year</span>
             </th>
             <th scope="col">
               <span class="tier">Business</span>
-            </th>
-            <th scope="col">
-              <span class="tier">Business Plus</span>
+              <span class="who">Up to five engineers</span>
+              <span class="price" data-mo="£79" data-yr="£790">£790</span>
+              <span class="per" data-mo="per month" data-yr="per year">per year</span>
             </th>
           </tr>
         </thead>
 
         <tbody>
-          <tr class="grp"><th scope="colgroup" colspan="5">The job</th></tr>
+          <tr class="grp"><th scope="colgroup" colspan="4">The job</th></tr>
           <tr><th scope="row">Habitation service check</th>
-              <td class="yes"></td><td class="yes pick"></td><td class="yes"></td><td class="yes"></td></tr>
+              <td class="yes"></td><td class="yes pick"></td><td class="yes"></td></tr>
           <tr><th scope="row">Damp report</th>
-              <td class="yes"></td><td class="yes pick"></td><td class="yes"></td><td class="yes"></td></tr>
+              <td class="yes"></td><td class="yes pick"></td><td class="yes"></td></tr>
           <tr><th scope="row">Tourer and motorhome</th>
-              <td class="yes"></td><td class="yes pick"></td><td class="yes"></td><td class="yes"></td></tr>
+              <td class="yes"></td><td class="yes pick"></td><td class="yes"></td></tr>
           <tr><th scope="row">Readings on the vehicle diagram</th>
-              <td class="yes"></td><td class="yes pick"></td><td class="yes"></td><td class="yes"></td></tr>
+              <td class="yes"></td><td class="yes pick"></td><td class="yes"></td></tr>
           <tr><th scope="row">Drawing tools — hatch, fill, notes</th>
-              <td class="yes"></td><td class="yes pick"></td><td class="yes"></td><td class="yes"></td></tr>
+              <td class="yes"></td><td class="yes pick"></td><td class="yes"></td></tr>
           <tr><th scope="row">Signatures captured on site</th>
-              <td class="yes"></td><td class="yes pick"></td><td class="yes"></td><td class="yes"></td></tr>
+              <td class="yes"></td><td class="yes pick"></td><td class="yes"></td></tr>
           <tr><th scope="row">One PDF, both documents</th>
-              <td class="yes"></td><td class="yes pick"></td><td class="yes"></td><td class="yes"></td></tr>
+              <td class="yes"></td><td class="yes pick"></td><td class="yes"></td></tr>
           <tr><th scope="row">Jobs a year</th>
               <td class="val">50</td><td class="val pick">Unlimited</td>
-              <td class="val">Unlimited</td><td class="val">Unlimited</td></tr>
+              <td class="val">Unlimited</td></tr>
 
-          <tr class="grp"><th scope="colgroup" colspan="5">The second time you see a van</th></tr>
+          <tr class="grp"><th scope="colgroup" colspan="4">The second time you see a van</th></tr>
           <tr><th scope="row">Clients and vehicles kept</th>
-              <td class="yes"></td><td class="yes pick"></td><td class="yes"></td><td class="yes"></td></tr>
+              <td class="yes"></td><td class="yes pick"></td><td class="yes"></td></tr>
           <tr><th scope="row">Damp readings year on year</th>
-              <td class="yes"></td><td class="yes pick"></td><td class="yes"></td><td class="yes"></td></tr>
+              <td class="yes"></td><td class="yes pick"></td><td class="yes"></td></tr>
           <tr><th scope="row">Start from last year's job</th>
-              <td class="no"></td><td class="yes pick"></td><td class="yes"></td><td class="yes"></td></tr>
+              <td class="no"></td><td class="yes pick"></td><td class="yes"></td></tr>
           <tr><th scope="row">Saved diagram per make and model</th>
-              <td class="no"></td><td class="yes pick"></td><td class="yes"></td><td class="yes"></td></tr>
+              <td class="no"></td><td class="yes pick"></td><td class="yes"></td></tr>
           <tr><th scope="row">Your stamp on the sheet</th>
-              <td class="no"></td><td class="yes pick"></td><td class="yes"></td><td class="yes"></td></tr>
+              <td class="no"></td><td class="yes pick"></td><td class="yes"></td></tr>
 
-          <tr class="grp"><th scope="colgroup" colspan="5">Off the tablet</th></tr>
+          <tr class="grp"><th scope="colgroup" colspan="4">Off the tablet</th></tr>
           <tr><th scope="row">Backed up, not just on the device</th>
               <td class="no"></td><td class="pick"><span class="soon">Soon</span></td>
-              <td><span class="soon">Soon</span></td><td><span class="soon">Soon</span></td></tr>
+              <td><span class="soon">Soon</span></td></tr>
           <tr><th scope="row">Sign in at habsheet.com</th>
               <td class="no"></td><td class="pick"><span class="soon">Soon</span></td>
-              <td><span class="soon">Soon</span></td><td><span class="soon">Soon</span></td></tr>
+              <td><span class="soon">Soon</span></td></tr>
           <tr><th scope="row">Shared clients across engineers</th>
               <td class="no"></td><td class="no pick"></td>
-              <td><span class="soon">Soon</span></td><td><span class="soon">Soon</span></td></tr>
+              <td><span class="soon">Soon</span></td></tr>
           <tr><th scope="row">Prepare a job for someone else to finish</th>
               <td class="no"></td><td class="no pick"></td>
-              <td><span class="soon">Soon</span></td><td><span class="soon">Soon</span></td></tr>
+              <td><span class="soon">Soon</span></td></tr>
           <tr><th scope="row">Rebooking reminders</th>
               <td class="no"></td><td class="no pick"></td>
-              <td><span class="soon">Soon</span></td><td><span class="soon">Soon</span></td></tr>
-
-          <tr class="grp"><th scope="colgroup" colspan="5">Your own paperwork</th></tr>
-          <tr><th scope="row">Documents built to your layout</th>
-              <td class="no"></td><td class="no pick"></td><td class="no"></td>
-              <td><span class="soon">Soon</span></td></tr>
-          <tr><th scope="row">Invoices</th>
-              <td class="no"></td><td class="no pick"></td><td class="no"></td>
               <td><span class="soon">Soon</span></td></tr>
 
-          <tr class="grp"><th scope="colgroup" colspan="5">Support</th></tr>
+          <tr class="grp"><th scope="colgroup" colspan="4">Support</th></tr>
           <tr><th scope="row">Email support</th>
-              <td class="yes"></td><td class="yes pick"></td><td class="yes"></td><td class="yes"></td></tr>
+              <td class="yes"></td><td class="yes pick"></td><td class="yes"></td></tr>
           <tr><th scope="row">Same working day, and a phone number</th>
-              <td class="no"></td><td class="no pick"></td><td class="yes"></td><td class="yes"></td></tr>
+              <td class="no"></td><td class="no pick"></td><td class="yes"></td></tr>
           <tr><th scope="row">Template updates included</th>
-              <td class="yes"></td><td class="yes pick"></td><td class="yes"></td><td class="yes"></td></tr>
+              <td class="yes"></td><td class="yes pick"></td><td class="yes"></td></tr>
         </tbody>
       </table>
     </div>
   </div>
 
   <p class="hint">Drag the table sideways to see every plan.</p>
+  </div>
+</section>
+
+<div class="wrap">
 
   <section class="why">
     <h2>What you are actually buying</h2>
