@@ -137,17 +137,66 @@ header{display:flex;align-items:center;gap:14px;padding-block:28px 0}
   }
 
   /* ---- questions ---- */
+
+  /* THE PLANS ON A PHONE.
+     A four-column comparison in 342 px is a table you drag sideways, and the
+     column you are dragging away from is the one you were comparing against —
+     you cannot hold two plans in your head through a horizontal scroll. One
+     plan at a time, opened on purpose, is the shape that fits. Same idea as
+     PlanRadar's phone view.
+
+     Built from the table by script rather than written twice: there is one
+     set of plan data on this page and it stays that way. If the script does
+     not run, the table is still there and still scrolls — the old behaviour,
+     not a blank page. */
+  .stack{display:none}
+  @media (max-width:760px){
+    .plate,.hint{display:none}
+    .stack{display:block;margin-top:4px}
+  }
+  .plan{border:1px solid var(--rule);border-radius:12px;background:var(--card);
+        margin:0 0 12px;overflow:hidden}
+  .plan > summary{display:flex;align-items:center;gap:14px;padding:15px 18px;
+        min-height:44px;cursor:pointer;list-style:none}
+  .plan > summary::-webkit-details-marker{display:none}
+  .plan > summary:focus-visible{outline:2px solid var(--ink);outline-offset:-3px}
+  .pl-l{flex:1;min-width:0}
+  .pl-name{display:block;font-size:19px;font-weight:700;letter-spacing:-.01em}
+  .pl-who{display:block;font-size:13px;color:var(--dim);margin-top:2px}
+  .pl-r{text-align:right}
+  .pl-price{display:block;font-size:21px;font-weight:700;letter-spacing:-.02em}
+  .pl-per{display:block;font-size:12px;color:var(--dim)}
+  .pl-chev{flex:none;width:9px;height:9px;border-right:2px solid currentColor;
+        border-bottom:2px solid currentColor;transform:rotate(45deg);margin:-4px 2px 0 2px;
+        opacity:.55}
+  .plan[open] > summary .pl-chev{transform:rotate(-135deg);margin-top:4px}
+  /* Only the summary is filled on the recommended plan. A whole card of dark
+     with twenty rows in it is a slab, not an emphasis. */
+  .plan.pick > summary{background:var(--ink)}
+  .plan.pick > summary .pl-name,.plan.pick > summary .pl-price{color:#fff}
+  .plan.pick > summary .pl-who,.plan.pick > summary .pl-per{color:#c3ccd4}
+  .plan.pick > summary .pl-chev{color:#fff}
+  .pl-flag{display:inline-block;background:var(--bg);color:var(--ink);font-size:10px;
+        letter-spacing:.14em;text-transform:uppercase;font-weight:700;border-radius:4px;
+        padding:2px 6px;margin-bottom:6px}
+  .pl-body{padding:2px 18px 14px}
+  .pl-grp{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);
+        font-weight:700;margin:16px 0 2px}
+  .pl-row{display:flex;align-items:center;justify-content:space-between;gap:16px;
+        padding:9px 0;border-top:1px solid var(--line);font-size:14.5px;color:var(--body)}
+  .pl-row .pl-v{flex:none;color:var(--ink);font-weight:600;font-size:13.5px}
+  .pl-row.off{color:var(--dim)}
   .qa{padding-block:66px 0}
-  details{border-bottom:1px solid var(--line)}
-  summary{
+  .qa details{border-bottom:1px solid var(--line)}
+  .qa summary{
     cursor:pointer;padding-block:17px;font-weight:600;font-size:16px;list-style:none;
     display:flex;align-items:center;gap:12px;
   }
-  summary::-webkit-details-marker{display:none}
-  summary::before{content:"+";color:var(--dim);font-weight:400;font-size:19px;line-height:1}
-  details[open] summary::before{content:"–"}
-  summary:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:3px}
-  details p{margin:0 0 18px;padding-left:24px;color:var(--body);font-size:15px;max-width:640px}
+  .qa summary::-webkit-details-marker{display:none}
+  .qa summary::before{content:"+";color:var(--dim);font-weight:400;font-size:19px;line-height:1}
+  .qa details[open] summary::before{content:"–"}
+  .qa summary:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:3px}
+  .qa details p{margin:0 0 18px;padding-left:24px;color:var(--body);font-size:15px;max-width:640px}
 
   /* ---- foot ---- */
   .cta{padding-block:66px 0}
@@ -305,6 +354,7 @@ header{display:flex;align-items:center;gap:14px;padding-block:28px 0}
   </div>
 
   <p class="hint">Drag the table sideways to see every plan.</p>
+  <div class="stack" id="stack"></div>
   </div>
 </section>
 
@@ -399,6 +449,78 @@ header{display:flex;align-items:center;gap:14px;padding-block:28px 0}
   </footer>
 
 </div>
+
+<script>
+/* Builds the phone view from the table above. Runs BEFORE the billing toggle
+   below, so the prices it generates carry the same data-mo / data-yr and are
+   picked up by the toggle's one query — the switch drives both views and there
+   is nothing to keep in step by hand. */
+(function(){
+  var table = document.querySelector('.plate table'), stack = document.getElementById('stack');
+  if (!table || !stack) return;
+  var heads = Array.prototype.slice.call(table.querySelectorAll('thead th')).slice(1);
+  var rows  = Array.prototype.slice.call(table.querySelectorAll('tbody tr'));
+
+  heads.forEach(function(th, i){
+    var d = document.createElement('details');
+    d.className = 'plan' + (th.className.indexOf('pick') > -1 ? ' pick' : '');
+    var price = th.querySelector('.price'), per = th.querySelector('.per');
+
+    var sum = document.createElement('summary');
+    var left = document.createElement('span'); left.className = 'pl-l';
+    if (th.className.indexOf('pick') > -1) {
+      var flag = document.createElement('span');
+      flag.className = 'pl-flag'; flag.textContent = 'Most workshops';
+      left.appendChild(flag);
+    }
+    var nm = document.createElement('span');
+    nm.className = 'pl-name'; nm.textContent = th.querySelector('.tier').textContent;
+    var who = document.createElement('span');
+    who.className = 'pl-who'; who.textContent = th.querySelector('.who').textContent;
+    left.appendChild(nm); left.appendChild(who);
+
+    var right = document.createElement('span'); right.className = 'pl-r';
+    var pr = document.createElement('span');
+    pr.className = 'pl-price'; pr.textContent = price.textContent;
+    pr.setAttribute('data-mo', price.getAttribute('data-mo'));
+    pr.setAttribute('data-yr', price.getAttribute('data-yr'));
+    var pe = document.createElement('span');
+    pe.className = 'pl-per'; pe.textContent = per.textContent;
+    pe.setAttribute('data-mo', per.getAttribute('data-mo'));
+    pe.setAttribute('data-yr', per.getAttribute('data-yr'));
+    right.appendChild(pr); right.appendChild(pe);
+
+    var chev = document.createElement('span'); chev.className = 'pl-chev';
+    sum.appendChild(left); sum.appendChild(right); sum.appendChild(chev);
+    d.appendChild(sum);
+
+    var body = document.createElement('div'); body.className = 'pl-body';
+    rows.forEach(function(tr){
+      if (tr.className.indexOf('grp') > -1) {
+        var h = document.createElement('p');
+        h.className = 'pl-grp'; h.textContent = tr.querySelector('th').textContent;
+        body.appendChild(h);
+        return;
+      }
+      var cell = tr.querySelectorAll('td')[i];
+      if (!cell) return;
+      var row = document.createElement('p'); row.className = 'pl-row';
+      var l = document.createElement('span');
+      l.textContent = tr.querySelector('th').textContent;
+      var v = document.createElement('span');
+      /* The tick and the dash are drawn by .yes / .no in CSS, so reusing the
+         class draws the same mark rather than a second description of it. */
+      if (cell.className.indexOf('yes') > -1) { v.className = 'yes'; }
+      else if (cell.className.indexOf('no') > -1) { v.className = 'no'; row.className += ' off'; }
+      else { v.className = 'pl-v'; v.textContent = cell.textContent.trim(); }
+      row.appendChild(l); row.appendChild(v);
+      body.appendChild(row);
+    });
+    d.appendChild(body);
+    stack.appendChild(d);
+  });
+})();
+</script>
 
 <script>
 (function(){
