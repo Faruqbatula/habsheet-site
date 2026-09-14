@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact &mdash; Habsheet</title>
+<meta name="description" content="Get in touch about Habsheet by email.">
+<link rel="canonical" href="https://habsheet.com/contact.html">
+<meta name="theme-color" content="#e7eaed">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{--bg:#e7eaed;--card:#fff;--ink:#14181c;--mid:#3b434a;--dim:#59626a;
+  --line:#d1d7dd;--rule:#bcc4cc;--paper:#f3f4f5;--edge:#aab2ba;--row:#f1f3f5}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);overflow-wrap:break-word;
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+a{color:var(--ink)}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:2px}
+p{margin:0 0 16px;color:var(--mid)}
+.cta{display:inline-flex;align-items:center;min-height:48px;padding:0 26px;border-radius:8px;
+  background:var(--ink);color:var(--bg);font-weight:600;font-size:16px;text-decoration:none}
+.cta:hover{background:#2b3238}
+
+/* ==== SHARED: header, nav and footer ====
+   The same text in all four pages, and check-site-layout.mjs (in the app
+   repository) fails when it is not. There is no shared stylesheet to change
+   instead: every page is one self-contained file. Change one, change all four. */
+.wrap{max-width:1080px;margin:0 auto;padding-inline:24px}
+header.top{display:flex;align-items:center;gap:14px;padding-block:28px 0;flex-wrap:wrap}
+.home{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;min-height:44px}
+.home:focus-visible{outline:2px solid var(--ink);outline-offset:4px;border-radius:4px}
+.mark{width:38px;height:38px;flex:none}
+.name{font-size:14px;letter-spacing:.22em;text-transform:uppercase;font-weight:600}
+.nav{margin-left:auto;display:flex;gap:22px}
+.nav a{font-size:14px;color:var(--dim);text-decoration:none;padding-block:11px}
+.nav a:hover{color:var(--ink)}
+.nav a[aria-current="page"]{color:var(--ink)}
+.nav a:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:3px}
+footer.foot{border-top:1px solid var(--line);margin-top:56px;padding-block:28px 44px;font-size:14px}
+footer.foot p{margin:0 0 10px;color:var(--dim);max-width:62ch}
+footer.foot a{color:var(--dim);text-decoration:none}
+footer.foot a:hover{text-decoration:underline}
+@media (max-width:560px){.nav{margin-left:0;width:100%;gap:26px}}
+/* ==== END SHARED ==== */
+
+.hero{padding-block:64px 24px}
+.hero > *{max-width:760px}
+h1{font-weight:700;letter-spacing:-.02em;margin:0 0 22px;font-size:clamp(32px,5.6vw,58px);line-height:1.06}
+.lede{font-size:clamp(17px,2.1vw,20px);line-height:1.55;color:var(--mid);margin:0 0 30px;max-width:54ch}
+.sec{padding-block:28px 8px}
+.sec > *{max-width:760px}
+.sec h2{margin:0 0 10px;font-size:clamp(20px,2.4vw,24px);font-weight:700;letter-spacing:-.01em}
+.box{background:var(--card);border:1.5px solid var(--ink);margin:0;padding:0;list-style:none}
+.box li{padding:14px 16px;border-bottom:1px solid var(--ink);color:var(--mid);font-size:15.5px}
+.box li:last-child{border-bottom:0}
+.box li:nth-child(odd){background:var(--row)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="top wrap"><a class="home" href="/" aria-label="Habsheet — home"><svg class="mark" viewBox="0 0 1024 1024" aria-hidden="true">
+  <rect width="1024" height="1024" fill="#0f1114"/>
+  <path fill="#fff" d="M160 112h704v800H160z"/>
+  <path fill="#0f1114" d="M232 184h560v656H232z"/>
+  <path fill="#fff" d="M268 240h488v56H268zM268 372h488v56H268zM268 504h488v56H268zM476 560h56v280h-56z"/>
+  <path fill="none" stroke="#fff" stroke-width="56" stroke-linecap="round" stroke-linejoin="round" d="M578 700l58 60 106-140"/>
+</svg><span class="name">Habsheet</span></a><nav class="nav"><a href="what-it-does.html">What it does</a><a href="pricing.html">Pricing</a><a href="contact.html" aria-current="page">Contact</a></nav></header>
+
+<section class="hero wrap">
+  <h1>Get in touch</h1>
+  <p class="lede">Habsheet is not on the App Store or Google Play yet. Email, and we will get
+    you set up.</p>
+  <a class="cta" href="mailto:faruq@habsheet.com">faruq@habsheet.com</a>
+</section>
+
+<section class="sec wrap">
+  <h2>It helps to say</h2>
+  <ul class="box">
+    <li>What you work on &mdash; tourers, motorhomes, campervans.</li>
+    <li>Whether you use an iPad or an Android tablet.</li>
+    <li>How many engineers work with you.</li>
+  </ul>
+</section>
+
+<div class="wrap"><footer class="foot">
+  <p><a href="mailto:faruq@habsheet.com">faruq@habsheet.com</a><br>Habsheet &mdash; United Kingdom</p>
+  <p>Habsheet is independent. It is not approved or endorsed by any scheme or trade body.</p>
+</footer></div>
+
+</body>
+</html>
