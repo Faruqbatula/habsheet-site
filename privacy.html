@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy &mdash; Habsheet</title>
+<meta name="description" content="What the Habsheet app stores, where it stores it, and what leaves the device.">
+<link rel="canonical" href="https://habsheet.com/privacy.html">
+<meta name="theme-color" content="#e7eaed">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{--bg:#e7eaed;--card:#fff;--ink:#14181c;--mid:#3b434a;--dim:#59626a;
+  --line:#d1d7dd;--rule:#bcc4cc;--paper:#f3f4f5;--edge:#aab2ba;--row:#f1f3f5}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);overflow-wrap:break-word;
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+a{color:var(--ink)}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:2px}
+p{margin:0 0 16px;color:var(--mid)}
+
+/* ==== SHARED: header, nav and footer ====
+   The same text in all five pages, and check-site-layout.mjs (in the app
+   repository) fails when it is not. There is no shared stylesheet to change
+   instead: every page is one self-contained file. Change one, change all five. */
+.wrap{max-width:1080px;margin:0 auto;padding-inline:24px}
+header.top{display:flex;align-items:center;gap:14px;padding-block:28px 0;flex-wrap:wrap}
+.home{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;min-height:44px}
+.home:focus-visible{outline:2px solid var(--ink);outline-offset:4px;border-radius:4px}
+.mark{width:38px;height:38px;flex:none}
+.name{font-size:14px;letter-spacing:.22em;text-transform:uppercase;font-weight:600}
+.nav{margin-left:auto;display:flex;gap:22px}
+.nav a{font-size:14px;color:var(--dim);text-decoration:none;padding-block:11px}
+.nav a:hover{color:var(--ink)}
+.nav a[aria-current="page"]{color:var(--ink)}
+.nav a:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:3px}
+footer.foot{border-top:1px solid var(--line);margin-top:56px;padding-block:28px 44px;font-size:14px}
+footer.foot p{margin:0 0 10px;color:var(--dim);max-width:62ch}
+footer.foot a{color:var(--dim);text-decoration:none}
+footer.foot a:hover{text-decoration:underline}
+@media (max-width:560px){.nav{margin-left:0;width:100%;gap:26px}}
+/* ==== END SHARED ==== */
+
+.hero{padding-block:64px 8px}
+.hero > *{max-width:760px}
+h1{font-weight:700;letter-spacing:-.02em;margin:0 0 22px;font-size:clamp(32px,5.6vw,58px);line-height:1.06}
+.lede{font-size:clamp(17px,2.1vw,20px);line-height:1.55;color:var(--mid);margin:0 0 18px;max-width:54ch}
+.dated{font-size:14px;color:var(--dim)}
+.sec{padding-block:28px 0}
+.sec > *{max-width:760px}
+.sec h2{margin:0 0 10px;font-size:clamp(20px,2.4vw,24px);font-weight:700;letter-spacing:-.01em}
+.sec ul{margin:0 0 16px;padding-left:22px;color:var(--mid)}
+.sec li{margin:0 0 8px}
+.box{background:var(--card);border:1.5px solid var(--ink);margin:0 0 16px;padding:0;list-style:none}
+.sec .box{padding:0}
+.box li{margin:0;padding:14px 16px;border-bottom:1px solid var(--ink);color:var(--mid);font-size:15.5px}
+.box li:last-child{border-bottom:0}
+.box li:nth-child(odd){background:var(--row)}
+.box b{color:var(--ink);font-weight:600}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="top wrap"><a class="home" href="/" aria-label="Habsheet — home"><svg class="mark" viewBox="0 0 1024 1024" aria-hidden="true">
+  <rect width="1024" height="1024" fill="#0f1114"/>
+  <path fill="#fff" d="M160 112h704v800H160z"/>
+  <path fill="#0f1114" d="M232 184h560v656H232z"/>
+  <path fill="#fff" d="M268 240h488v56H268zM268 372h488v56H268zM268 504h488v56H268zM476 560h56v280h-56z"/>
+  <path fill="none" stroke="#fff" stroke-width="56" stroke-linecap="round" stroke-linejoin="round" d="M578 700l58 60 106-140"/>
+</svg><span class="name">Habsheet</span></a><nav class="nav"><a href="what-it-does.html">What it does</a><a href="pricing.html">Pricing</a><a href="contact.html">Contact</a></nav></header>
+
+<section class="hero wrap">
+  <h1>Privacy</h1>
+  <p class="lede">The Habsheet app keeps what you enter on your device. It has no account, no
+    server and no analytics, and it sends nothing to us.</p>
+  <p class="dated">Updated 15 September 2026. This describes Habsheet 1.0.0 for iPad, iPhone and
+    Android.</p>
+</section>
+
+<section class="sec wrap">
+  <h2>What the app stores</h2>
+  <ul class="box">
+    <li><b>About you:</b> your workshop name, your name, your signature, any logo or stamp
+      image you add, your damp meter and its calibration, and your job reference
+      numbering.</li>
+    <li><b>About your customers:</b> their names, and any phone number, email address or note
+      you add.</li>
+    <li><b>About their vehicles:</b> make and model, year, CRiS or VIN, registration, mileage
+      and any note you add.</li>
+    <li><b>About each job:</b> dates, checklist answers, measurements, damp readings, drawings,
+      comments, observations and signatures, including the customer&rsquo;s.</li>
+    <li><b>The PDFs you export.</b></li>
+  </ul>
+  <p>All of it is saved in the app&rsquo;s own storage on your device. None of it is sent to
+    us. We cannot see it, and we cannot get it back for you if it is lost.</p>
+</section>
+
+<section class="sec wrap">
+  <h2>Your customers&rsquo; information</h2>
+  <p>You decide what to record about your customers and what to do with it. Under UK data
+    protection law you are responsible for that information. We never receive it, so we do
+    not process it on your behalf.</p>
+</section>
+
+<section class="sec wrap">
+  <h2>What leaves the device</h2>
+  <p>The app makes no network connections of its own. Information leaves the device only when
+    you do one of these things:</p>
+  <ul>
+    <li><b>Share a PDF.</b> The system share sheet opens and you choose where it goes: email, a
+      message, a cloud drive or another app. What happens to it after that is governed by the
+      service you chose.</li>
+    <li><b>Tap a customer&rsquo;s phone number or email address.</b> The app opens your phone or
+      email app with that number or address. It does not make the call or send anything
+      itself.</li>
+    <li><b>Tap &ldquo;Contact us&rdquo;.</b> Your browser opens habsheet.com. The website is
+      hosted on GitHub Pages, and GitHub records visitors&rsquo; IP addresses for security.
+      The website has no analytics or cookies.</li>
+  </ul>
+</section>
+
+<section class="sec wrap">
+  <h2>Device backups</h2>
+  <p>If backup is turned on for your device, the app&rsquo;s data is included in it, the same as
+    other apps. On an iPad or iPhone that is an iCloud or computer backup. On Android it is a
+    backup to your Google account. The backup belongs to your Apple or Google account; we have
+    no access to it. You can turn backup off in your device settings.</p>
+</section>
+
+<section class="sec wrap">
+  <h2>Your logo or stamp</h2>
+  <p>When you add a logo or stamp, the system photo picker opens and the app receives only the
+    image you choose. The app keeps a reduced copy for your sheets. It does not read the rest
+    of your photos.</p>
+</section>
+
+<section class="sec wrap">
+  <h2>Permissions</h2>
+  <p>On Android the app lists one permission: network access. It comes with the framework the
+    app is built on. The app does not use it to send anything.</p>
+  <p>The app does not use your location, camera, microphone, contacts, calendar or
+    notifications.</p>
+</section>
+
+<section class="sec wrap">
+  <h2>What the app does not have</h2>
+  <ul>
+    <li>No accounts or sign-in.</li>
+    <li>No analytics, usage tracking, advertising or advertising identifiers.</li>
+    <li>No crash reporting inside the app.</li>
+    <li>No automatic updates from a server. Updates come through the App Store or Google
+      Play.</li>
+  </ul>
+</section>
+
+<section class="sec wrap">
+  <h2>Apple and Google</h2>
+  <p>The App Store and Google Play deliver the app, under their own privacy policies. If you
+    have allowed your device to share diagnostics with app developers, Apple or Google may
+    pass us crash and performance reports. Those describe the device, its operating system
+    and what the app was doing when it failed. They do not contain your jobs or your
+    customers&rsquo; details.</p>
+</section>
+
+<section class="sec wrap">
+  <h2>Deleting your data</h2>
+  <p>Deleting a job in the app deletes it from your device. Exported PDFs stay in the
+    app&rsquo;s storage until the app is deleted. Deleting the app deletes everything it stored,
+    apart from any device backups and any PDFs you have already shared.</p>
+  <p>We hold none of the data the app stores, so there is nothing for us to delete.</p>
+</section>
+
+<section class="sec wrap">
+  <h2>If you email us</h2>
+  <p>We keep your email address and your messages so we can reply, and for as long as we are
+    in touch about Habsheet. Ask and we will delete them. If you are unhappy with how we have
+    handled your information you can complain to the Information Commissioner&rsquo;s Office
+    at ico.org.uk.</p>
+</section>
+
+<section class="sec wrap">
+  <h2>Children</h2>
+  <p>Habsheet is for professional engineers. It is not intended for children.</p>
+</section>
+
+<section class="sec wrap">
+  <h2>Changes</h2>
+  <p>If the app changes what it stores or sends, this page will change before that version is
+    released, and the date at the top will change with it.</p>
+  <p>Questions: <a href="mailto:faruq@habsheet.com">faruq@habsheet.com</a></p>
+</section>
+
+<div class="wrap"><footer class="foot">
+  <p><a href="mailto:faruq@habsheet.com">faruq@habsheet.com</a><br>Habsheet &mdash; United Kingdom</p>
+  <p><a href="privacy.html">Privacy</a></p>
+  <p>Habsheet is independent. It is not approved or endorsed by any scheme or trade body.</p>
+</footer></div>
+
+</body>
+</html>
