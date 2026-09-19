@@ -50,10 +50,23 @@ header.top{display:flex;align-items:center;gap:14px;padding-block:28px 0;flex-wr
 .nav a:hover{color:var(--ink)}
 .nav a[aria-current="page"]{color:var(--ink)}
 .nav a:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:3px}
-footer.foot{border-top:1px solid var(--line);margin-top:56px;padding-block:28px 44px;font-size:14px}
-footer.foot p{margin:0 0 10px;color:var(--dim);max-width:62ch}
-footer.foot a{color:var(--dim);text-decoration:none}
+/* THE FOOTER IS A DARK BAND, edge to edge (19 September 2026, the engineer's
+   pick of two mockups after Fieldwire's). Company details and the independence
+   line are the law's and the stores', and the check requires them on every page. */
+footer.foot{background:#1a1d21;color:#d3d9de;margin-top:72px;font-size:14px}
+footer.foot .fcols{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.3fr;gap:32px;padding-block:52px 40px}
+footer.foot h2{font-size:14px;font-weight:700;letter-spacing:0;line-height:1.4;margin:0 0 6px;color:#fff}
+footer.foot a{color:#d3d9de;text-decoration:none}
 footer.foot a:hover{text-decoration:underline}
+footer.foot a:focus-visible{outline:2px solid #fff;outline-offset:2px;border-radius:3px}
+footer.foot .fcols a{display:block;padding-block:11px;line-height:22px}
+footer.foot .fcols a.fhome{display:flex;align-items:center;gap:12px;padding:0;min-height:44px;color:#fff;margin-bottom:10px}
+footer.foot .fhome span{font-size:14px;letter-spacing:.22em;text-transform:uppercase;font-weight:600}
+footer.foot .fmark{width:34px;height:34px;flex:none;box-shadow:0 0 0 1px #4a515a}
+footer.foot p{margin:0 0 8px;color:#aab2b9;max-width:88ch}
+footer.foot .fbrand p{max-width:30ch}
+footer.foot .fbase{border-top:1px solid #3a4047;padding-block:22px 34px;font-size:13px}
+@media (max-width:760px){footer.foot .fcols{grid-template-columns:1fr 1fr;row-gap:28px}footer.foot .fbrand{grid-column:1/-1}}
 @media (max-width:560px){.nav{margin-left:0;width:100%;gap:26px}}
 /* ==== END SHARED ==== */
 
@@ -162,11 +175,29 @@ h1{font-weight:700;letter-spacing:-.02em;margin:0 0 22px;font-size:clamp(32px,5.
     <p style="margin-top:22px"><a class="cta" href="contact.html">Get in touch</a></p></div>
 </section>
 
-<div class="wrap"><footer class="foot">
-  <p><a href="mailto:faruq@habsheet.com">faruq@habsheet.com</a><br>Habsheet Limited, registered in England and Wales, company number 17459789.<br>Registered office: Suite RA01, 195&ndash;197 Wood Street, London E17 3NU, United Kingdom.</p>
-  <p><a href="privacy.html">Privacy</a></p>
-  <p>Habsheet is independent. It is not approved or endorsed by any scheme or trade body.</p>
-</footer></div>
+<footer class="foot">
+<div class="wrap">
+  <div class="fcols">
+    <div class="fbrand">
+      <a class="fhome" href="/" aria-label="Habsheet — home"><svg class="fmark" viewBox="0 0 1024 1024" aria-hidden="true">
+  <rect width="1024" height="1024" fill="#0f1114"/>
+  <path fill="#fff" d="M160 112h704v800H160z"/>
+  <path fill="#0f1114" d="M232 184h560v656H232z"/>
+  <path fill="#fff" d="M268 240h488v56H268zM268 372h488v56H268zM268 504h488v56H268zM476 560h56v280h-56z"/>
+  <path fill="none" stroke="#fff" stroke-width="56" stroke-linecap="round" stroke-linejoin="round" d="M578 700l58 60 106-140"/>
+</svg><span>Habsheet</span></a>
+      <p>The habitation service record and damp report, on the sheet you already use.</p>
+    </div>
+    <div><h2>Product</h2><a href="what-it-does.html">What it does</a><a href="pricing.html">Pricing</a></div>
+    <div><h2>Legal</h2><a href="privacy.html">Privacy</a></div>
+    <div><h2>Contact</h2><a href="contact.html">Contact</a><a href="mailto:faruq@habsheet.com">faruq@habsheet.com</a></div>
+  </div>
+  <div class="fbase">
+    <p>&copy; 2026 Habsheet Limited, registered in England and Wales, company number 17459789.<br>Registered office: Suite RA01, 195&ndash;197 Wood Street, London E17 3NU, United Kingdom.</p>
+    <p>Habsheet is independent. It is not approved or endorsed by any scheme or trade body.</p>
+  </div>
+</div>
+</footer>
 
 </body>
 </html>

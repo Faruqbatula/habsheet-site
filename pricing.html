@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pricing — Habsheet</title>
-<meta name="description" content="Habsheet is free on one device. A subscription keeps a copy of your jobs on our server: £449.99 a year, or £45 a month.">
+<meta name="description" content="Habsheet Pro is £449.99 a year or £45 a month. Business, for up to five engineers, is £950 a year or £95 a month.">
 <style>
   :root{
     /* Light for the same measured reason as index.html: read outdoors, where a
@@ -44,10 +44,23 @@ header.top{display:flex;align-items:center;gap:14px;padding-block:28px 0;flex-wr
 .nav a:hover{color:var(--ink)}
 .nav a[aria-current="page"]{color:var(--ink)}
 .nav a:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:3px}
-footer.foot{border-top:1px solid var(--line);margin-top:56px;padding-block:28px 44px;font-size:14px}
-footer.foot p{margin:0 0 10px;color:var(--dim);max-width:62ch}
-footer.foot a{color:var(--dim);text-decoration:none}
+/* THE FOOTER IS A DARK BAND, edge to edge (19 September 2026, the engineer's
+   pick of two mockups after Fieldwire's). Company details and the independence
+   line are the law's and the stores', and the check requires them on every page. */
+footer.foot{background:#1a1d21;color:#d3d9de;margin-top:72px;font-size:14px}
+footer.foot .fcols{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.3fr;gap:32px;padding-block:52px 40px}
+footer.foot h2{font-size:14px;font-weight:700;letter-spacing:0;line-height:1.4;margin:0 0 6px;color:#fff}
+footer.foot a{color:#d3d9de;text-decoration:none}
 footer.foot a:hover{text-decoration:underline}
+footer.foot a:focus-visible{outline:2px solid #fff;outline-offset:2px;border-radius:3px}
+footer.foot .fcols a{display:block;padding-block:11px;line-height:22px}
+footer.foot .fcols a.fhome{display:flex;align-items:center;gap:12px;padding:0;min-height:44px;color:#fff;margin-bottom:10px}
+footer.foot .fhome span{font-size:14px;letter-spacing:.22em;text-transform:uppercase;font-weight:600}
+footer.foot .fmark{width:34px;height:34px;flex:none;box-shadow:0 0 0 1px #4a515a}
+footer.foot p{margin:0 0 8px;color:#aab2b9;max-width:88ch}
+footer.foot .fbrand p{max-width:30ch}
+footer.foot .fbase{border-top:1px solid #3a4047;padding-block:22px 34px;font-size:13px}
+@media (max-width:760px){footer.foot .fcols{grid-template-columns:1fr 1fr;row-gap:28px}footer.foot .fbrand{grid-column:1/-1}}
 @media (max-width:560px){.nav{margin-left:0;width:100%;gap:26px}}
 /* ==== END SHARED ==== */
 
@@ -230,11 +243,10 @@ footer.foot a:hover{text-decoration:underline}
 <div class="wrap">
   <section class="hero">
     <p class="eyebrow">Pricing</p>
-    <h1>Free on one device. £449.99 a year to keep a copy.</h1>
-    <p class="lede">The whole of Habsheet &mdash; both documents, every vehicle, readings,
-    drawings, signatures and the PDF &mdash; is free on one device, for as long as you use it.
-    A subscription keeps a copy of your jobs on our server, so a lost or replaced device
-    doesn&rsquo;t cost you a year&rsquo;s work.</p>
+    <h1>£449.99 a year, or £45 a month.</h1>
+    <p class="lede">The habitation service record and damp report, filled in on the sheet you
+    already use, signed on the driveway, and handed over as one PDF before you leave.
+    A subscription unlocks all of it.</p>
   </section>
 </div>
 
@@ -255,16 +267,16 @@ footer.foot a:hover{text-decoration:underline}
       <button type="button" id="b-mo" aria-pressed="false">Monthly</button>
       <button type="button" id="b-yr" aria-pressed="true">Annual</button>
     </div>
+    <span class="saver">Subscriptions aren&rsquo;t open yet. Both plans open together.</span>
   </div>
 
-  <!-- WHAT EACH PLAN GIVES YOU TODAY, AND WHAT IS COMING, KEPT APART.
-       The engineer, 18 September 2026: Pro lists what works today — a copy of
-       every job on our server — and restore and more than one device are marked
-       Coming, never counted as part of what Pro gives you. "An engineer who buys
-       on the strength of 'a new device gets your jobs back' and finds it doesn't
-       yet is the one conversation I can't afford." Business is coming, with no
-       price and no date. No column is marked as the one to pick: nothing here
-       could say "most workshops" and mean it. -->
+  <!-- TWO PLANS, BOTH PRICED, NOTHING FREE — 19 September 2026.
+       A subscription unlocks the app; there is no free tier and no trial, so
+       there is no free column. Nothing here lists what does not work today:
+       restore and more than one device are marked Coming, and "a copy of every
+       job on our server" is off until restore is built — a copy an engineer
+       cannot get back reads as a restore he does not have. Business's workshop
+       features are Coming. No column is marked as the one to pick. -->
   <div class="plate">
     <div class="scroll">
       <table>
@@ -273,52 +285,43 @@ footer.foot a:hover{text-decoration:underline}
           <tr>
             <th scope="col"><span class="tier">&nbsp;</span><span class="who">&nbsp;</span></th>
             <th scope="col">
-              <span class="tier">Free</span>
-              <span class="who">One device</span>
-              <span class="price" data-mo="£0" data-yr="£0">£0</span>
-              <span class="per" data-mo="for as long as you use it" data-yr="for as long as you use it">for as long as you use it</span>
-            </th>
-            <th scope="col">
               <span class="tier">Pro</span>
-              <span class="who">Opens when backup is ready</span>
+              <span class="who">One engineer</span>
               <span class="price" data-mo="£45" data-yr="£449.99">£449.99</span>
               <span class="per" data-mo="per month" data-yr="per year">per year</span>
             </th>
             <th scope="col">
               <span class="tier">Business</span>
-              <span class="who">More than one engineer</span>
-              <span class="price" data-mo="Coming" data-yr="Coming">Coming</span>
-              <span class="per" data-mo="&nbsp;" data-yr="&nbsp;">&nbsp;</span>
+              <span class="who">Up to five engineers</span>
+              <span class="price" data-mo="£95" data-yr="£950">£950</span>
+              <span class="per" data-mo="per month" data-yr="per year">per year</span>
             </th>
           </tr>
         </thead>
 
         <tbody>
-          <tr class="grp"><th scope="colgroup" colspan="4">The job</th></tr>
-          <tr><th scope="row">Habitation service record and damp report</th><td class="yes"></td><td class="yes"></td><td class="yes"></td></tr>
-          <tr><th scope="row">Tourer, motorhome and campervan</th><td class="yes"></td><td class="yes"></td><td class="yes"></td></tr>
-          <tr><th scope="row">Readings on the vehicle diagram</th><td class="yes"></td><td class="yes"></td><td class="yes"></td></tr>
-          <tr><th scope="row">Drawing tools: shapes, hatching, notes</th><td class="yes"></td><td class="yes"></td><td class="yes"></td></tr>
-          <tr><th scope="row">Signatures captured on site</th><td class="yes"></td><td class="yes"></td><td class="yes"></td></tr>
-          <tr><th scope="row">One PDF, both documents</th><td class="yes"></td><td class="yes"></td><td class="yes"></td></tr>
+          <tr class="grp"><th scope="colgroup" colspan="3">The job</th></tr>
+          <tr><th scope="row">Habitation service record and damp report</th><td class="yes"></td><td class="yes"></td></tr>
+          <tr><th scope="row">Tourer, motorhome and campervan</th><td class="yes"></td><td class="yes"></td></tr>
+          <tr><th scope="row">Readings on the vehicle diagram</th><td class="yes"></td><td class="yes"></td></tr>
+          <tr><th scope="row">Drawing tools: shapes, hatching, notes</th><td class="yes"></td><td class="yes"></td></tr>
+          <tr><th scope="row">Signatures captured on site</th><td class="yes"></td><td class="yes"></td></tr>
+          <tr><th scope="row">One PDF, both documents</th><td class="yes"></td><td class="yes"></td></tr>
 
-          <tr class="grp"><th scope="colgroup" colspan="4">The second time you see a van</th></tr>
-          <tr><th scope="row">Clients and vehicles kept</th><td class="yes"></td><td class="yes"></td><td class="yes"></td></tr>
-          <tr><th scope="row">Start from last year's job</th><td class="yes"></td><td class="yes"></td><td class="yes"></td></tr>
-          <tr><th scope="row">Your workshop's images on the sheet</th><td class="yes"></td><td class="yes"></td><td class="yes"></td></tr>
+          <tr class="grp"><th scope="colgroup" colspan="3">The second time you see a van</th></tr>
+          <tr><th scope="row">Clients and vehicles kept</th><td class="yes"></td><td class="yes"></td></tr>
+          <tr><th scope="row">Start from last year's job</th><td class="yes"></td><td class="yes"></td></tr>
+          <tr><th scope="row">Your workshop's images on the sheet</th><td class="yes"></td><td class="yes"></td></tr>
 
-          <tr class="grp"><th scope="colgroup" colspan="4">Kept safe</th></tr>
-          <tr><th scope="row">A copy of every job on our server</th><td class="no"></td><td class="yes"></td><td class="yes"></td></tr>
+          <tr class="grp"><th scope="colgroup" colspan="3">Coming</th></tr>
+          <tr><th scope="row">A new or replaced device gets your jobs back</th><td class="soon">Coming</td><td class="soon">Coming</td></tr>
+          <tr><th scope="row">The same account on more than one device</th><td class="soon">Coming</td><td class="soon">Coming</td></tr>
 
-          <tr class="grp"><th scope="colgroup" colspan="4">Coming</th></tr>
-          <tr><th scope="row">A new or replaced device gets your jobs back</th><td class="no"></td><td class="soon">Coming</td><td class="soon">Coming</td></tr>
-          <tr><th scope="row">The same account on more than one device</th><td class="no"></td><td class="soon">Coming</td><td class="soon">Coming</td></tr>
-
-          <tr class="grp"><th scope="colgroup" colspan="4">The workshop</th></tr>
-          <tr><th scope="row">Up to five engineers in one workshop</th><td class="no"></td><td class="no"></td><td class="soon">Coming</td></tr>
-          <tr><th scope="row">Clients, vehicles and jobs shared across the workshop</th><td class="no"></td><td class="no"></td><td class="soon">Coming</td></tr>
-          <tr><th scope="row">One subscription, paid by the workshop</th><td class="no"></td><td class="no"></td><td class="soon">Coming</td></tr>
-          <tr><th scope="row">Everyone sees whether it&rsquo;s running; only whoever pays sees the billing</th><td class="no"></td><td class="no"></td><td class="soon">Coming</td></tr>
+          <tr class="grp"><th scope="colgroup" colspan="3">The workshop</th></tr>
+          <tr><th scope="row">Up to five engineers in one workshop</th><td class="no"></td><td class="soon">Coming</td></tr>
+          <tr><th scope="row">Clients, vehicles and jobs shared across the workshop</th><td class="no"></td><td class="soon">Coming</td></tr>
+          <tr><th scope="row">One subscription, paid by the workshop</th><td class="no"></td><td class="soon">Coming</td></tr>
+          <tr><th scope="row">Everyone sees whether it&rsquo;s running; only whoever pays sees the billing</th><td class="no"></td><td class="soon">Coming</td></tr>
         </tbody>
       </table>
     </div>
@@ -331,20 +334,15 @@ footer.foot a:hover{text-decoration:underline}
 <div class="wrap">
 
   <section class="why">
-    <h2>What a subscription is for</h2>
-    <p>A year of habitation checks is several hundred signed documents. On the free app,
-    every one of them lives on one device. Devices get dropped, left on a van roof, taken
-    from a driveway and replaced. When that happens, the jobs go with it.</p>
-    <p>A customer who questions a damp reading in November is asking about a sheet you
-    signed in March. With a subscription, a copy of that sheet is on our server.</p>
-
-    <h2 style="margin-top:44px">If you stop paying</h2>
-    <p>Nothing on your device changes. Every job stays, you can still open, edit and export
-    them, and the app carries on working. The copy on our server is kept for 30 days after
-    the subscription ends, then removed.</p>
+    <h2>If you stop paying</h2>
+    <p>Every job you&rsquo;ve done stays on your device, and you can still open, export and
+    share all of them, for good. Paperwork you have finished is never taken away. Starting
+    new jobs and editing stop 30 days after your subscription ends, so nothing is left
+    half-finished.</p>
 
     <h2 style="margin-top:44px">The small print</h2>
-    <p>Monthly comes to £540 over a year. Yearly is £449.99.</p>
+    <p>Pro monthly comes to £540 over a year; yearly is £449.99. Business monthly comes to
+    £1,140 over a year; yearly is £950.</p>
     <p>Cancel whenever you like. The subscription runs to the end of the period
     you&rsquo;ve paid for.</p>
     <p>No VAT is added.</p>
@@ -361,8 +359,10 @@ footer.foot a:hover{text-decoration:underline}
 
     <details>
       <summary>What happens to my jobs if my subscription ends?</summary>
-      <p>They stay on your device, and every one of them can still be opened, edited and
-      exported. Paperwork you have finished is never taken away.</p>
+      <p>Every job you&rsquo;ve done stays on your device, and you can still open, export and
+      share all of them, for good. Paperwork you have finished is never taken away. Starting
+      new jobs and editing stop 30 days after your subscription ends, so nothing is left
+      half-finished.</p>
     </details>
 
     <details>
@@ -373,34 +373,51 @@ footer.foot a:hover{text-decoration:underline}
 
     <details>
       <summary>Two of us work out of the same workshop. What do we need?</summary>
-      <p>Today the app is free on each of your devices, and each engineer keeps their own
-      clients and vehicles. If you both want backup, that&rsquo;s a Pro subscription each.
-      Business is coming for exactly this: one workshop, up to five engineers, sharing
-      clients, vehicles and jobs under one subscription.</p>
+      <p>Business: one workshop, up to five engineers, sharing clients, vehicles and jobs
+      under one subscription, for £950 a year. It opens with Pro. Its shared workshop
+      features are marked Coming above; until they arrive, each engineer keeps their own
+      clients and vehicles.</p>
     </details>
 
     <details>
       <summary>Does it work without a signal?</summary>
       <p>Yes. Everything happens on the device. A driveway with no bars is the normal case,
-      not the exception. Backup catches up the next time there&rsquo;s a signal.</p>
+      not the exception.</p>
     </details>
   </section>
 
   <section class="cta">
     <h2>Getting set up</h2>
     <p style="color:var(--body);max-width:640px;margin:0">Tell us what you drive out to and
-    we will get you set up. If you want backup, say so, and we&rsquo;ll tell you the day
-    it opens.</p>
+    we will get you set up. If you want to know the day subscriptions open, say so.</p>
     <a class="btn" href="mailto:faruq@habsheet.com">faruq@habsheet.com</a>
   </section>
 
-  <footer class="foot">
-  <p><a href="mailto:faruq@habsheet.com">faruq@habsheet.com</a><br>Habsheet Limited, registered in England and Wales, company number 17459789.<br>Registered office: Suite RA01, 195&ndash;197 Wood Street, London E17 3NU, United Kingdom.</p>
-  <p><a href="privacy.html">Privacy</a></p>
-  <p>Habsheet is independent. It is not approved or endorsed by any scheme or trade body.</p>
-</footer>
-
 </div>
+
+<footer class="foot">
+<div class="wrap">
+  <div class="fcols">
+    <div class="fbrand">
+      <a class="fhome" href="/" aria-label="Habsheet — home"><svg class="fmark" viewBox="0 0 1024 1024" aria-hidden="true">
+  <rect width="1024" height="1024" fill="#0f1114"/>
+  <path fill="#fff" d="M160 112h704v800H160z"/>
+  <path fill="#0f1114" d="M232 184h560v656H232z"/>
+  <path fill="#fff" d="M268 240h488v56H268zM268 372h488v56H268zM268 504h488v56H268zM476 560h56v280h-56z"/>
+  <path fill="none" stroke="#fff" stroke-width="56" stroke-linecap="round" stroke-linejoin="round" d="M578 700l58 60 106-140"/>
+</svg><span>Habsheet</span></a>
+      <p>The habitation service record and damp report, on the sheet you already use.</p>
+    </div>
+    <div><h2>Product</h2><a href="what-it-does.html">What it does</a><a href="pricing.html">Pricing</a></div>
+    <div><h2>Legal</h2><a href="privacy.html">Privacy</a></div>
+    <div><h2>Contact</h2><a href="contact.html">Contact</a><a href="mailto:faruq@habsheet.com">faruq@habsheet.com</a></div>
+  </div>
+  <div class="fbase">
+    <p>&copy; 2026 Habsheet Limited, registered in England and Wales, company number 17459789.<br>Registered office: Suite RA01, 195&ndash;197 Wood Street, London E17 3NU, United Kingdom.</p>
+    <p>Habsheet is independent. It is not approved or endorsed by any scheme or trade body.</p>
+  </div>
+</div>
+</footer>
 
 <script>
 /* Builds the phone view from the table above. Runs BEFORE the billing toggle
