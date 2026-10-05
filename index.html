@@ -6,54 +6,80 @@
 <title>Habsheet &mdash; habitation service and damp reports on a tablet</title>
 <meta name="description" content="Habsheet puts the habitation service record and the damp report on a tablet. You fill in the sheet itself and the customer has the PDF before you leave.">
 <link rel="canonical" href="https://habsheet.com/">
-<meta name="theme-color" content="#e7eaed">
+<meta name="theme-color" content="#faf9f7">
 <meta property="og:title" content="Habsheet — habitation service and damp reports on a tablet">
 <meta property="og:description" content="The habitation service record and the damp report, filled in on screen. The customer has the PDF before you leave the driveway.">
 <meta property="og:url" content="https://habsheet.com/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_GB">
-<style>
-/* ONE FILE, NO BUILD, NO REQUESTS. System fonts, inline SVG and the images as
+<style>/* ONE FILE, NO BUILD, NO REQUESTS. System fonts, inline SVG and the images as
    data URIs: this is read beside a van on whatever signal the driveway has. */
 *,*::before,*::after{box-sizing:border-box}
 /* LIGHT, AND NOT FOR THE LOOK OF IT. A screen adds reflected light to
    everything on it, and a dark ground starts near zero so it loses
    proportionally more: on an AR-coated tablet at 600 nits, 4.1:1 against
-   5.5:1 in bright open shade. Same tokens as the app's chrome. */
-:root{--bg:#e7eaed;--card:#fff;--ink:#14181c;--mid:#3b434a;--dim:#59626a;
-  --line:#d1d7dd;--rule:#bcc4cc;--paper:#f3f4f5;--edge:#aab2ba;--row:#f1f3f5}
+   5.5:1 in bright open shade.
+
+   REDESIGNED 5 October 2026, and the ground stayed light for that reason — a
+   dark direction was drawn and rejected on it. What changed is the ground is
+   WARMER AND BRIGHTER (#faf9f7 against #e7eaed), which buys contrast headroom
+   rather than spending it, and the page is now laid out around the ask rather
+   than around a price list. */
+:root{--bg:#faf9f7;--card:#fff;--ink:#13181f;--mid:#424c57;--dim:#5f6a75;
+  --line:#e4e2dd;--rule:#cfccc6;--paper:#f3f1ed;--edge:#c3c0ba;--row:#f4f2ef;
+  --sand:#f2efe9;--blue:#1a63c4}
+/* --dim IS MEASURED, NOT PICKED. It was #6b7681 and came out at 4.40:1 on the
+   new ground and 4.04 on the sand band — the redesign brightened the ground and
+   the secondary grey did not follow it. #5f6a75 is the first step dark enough to
+   clear 4.5 on every ground the site uses, worst case 4.81 on the sand:
+
+     ground   #faf9f7  #f2efe9  #ffffff  #f1f6fd  #f4f2ef
+     #6b7681     4.40     4.04     4.63     4.27     4.15
+     #5f6a75     5.25     4.81     5.52     5.08     4.94
+
+   check-site-layout reads these off the rendered elements, so the table above is
+   the working, not the authority. */
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);overflow-wrap:break-word;
-  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font:16px/1.62 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   -webkit-font-smoothing:antialiased}
 img,svg{display:block;max-width:100%}
 a{color:var(--ink)}
 :focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:2px}
 p{margin:0 0 16px;color:var(--mid)}
-/* 48px tall, past the 44px minimum, on a screen used in gloves. */
-.cta{display:inline-flex;align-items:center;min-height:48px;padding:0 26px;border-radius:8px;
-  background:var(--ink);color:var(--bg);font-weight:600;font-size:16px;text-decoration:none}
+/* 48px tall, past the 44px minimum, on a screen used in gloves. Rounded fully
+   since the redesign: the only shape on the page that is, so it reads as the
+   thing to press without needing a colour to say so. */
+.cta{display:inline-flex;align-items:center;min-height:48px;padding:0 26px;border-radius:999px;
+  background:var(--ink);color:#fff;font-weight:650;font-size:16px;text-decoration:none}
 .cta:hover{background:#2b3238}
+.cta.blue{background:var(--blue)}
+.cta.blue:hover{background:#155399}
+.cta.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.cta.ghost:hover{background:rgba(19,24,31,.05)}
 
 /* ==== SHARED: header, nav and footer ====
-   The same text in all five pages, and check-site-layout.mjs (in the app
+   The same text in all pages, and check-site-layout.mjs (in the app
    repository) fails when it is not. There is no shared stylesheet to change
-   instead: every page is one self-contained file. Change one, change all five. */
-.wrap{max-width:1080px;margin:0 auto;padding-inline:24px}
-header.top{display:flex;align-items:center;gap:14px;padding-block:28px 0;flex-wrap:wrap}
-.home{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;min-height:44px}
+   instead: every page is one self-contained file. Change one, change all. */
+.wrap{max-width:1100px;margin:0 auto;padding-inline:24px}
+header.top{display:flex;align-items:center;gap:14px;padding-block:24px 0;flex-wrap:wrap}
+.home{display:flex;align-items:center;gap:13px;text-decoration:none;color:inherit;min-height:44px}
 .home:focus-visible{outline:2px solid var(--ink);outline-offset:4px;border-radius:4px}
-.mark{width:38px;height:38px;flex:none}
-.name{font-size:14px;letter-spacing:.22em;text-transform:uppercase;font-weight:600}
-.nav{margin-left:auto;display:flex;gap:22px}
-.nav a{font-size:14px;color:var(--dim);text-decoration:none;padding-block:11px}
+.mark{width:34px;height:34px;flex:none;border-radius:8px}
+.name{font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:650}
+.nav{margin-left:auto;display:flex;gap:22px;align-items:center}
+.nav a{font-size:15px;color:var(--mid);text-decoration:none;padding-block:11px;min-height:44px;display:flex;align-items:center}
 .nav a:hover{color:var(--ink)}
-.nav a[aria-current="page"]{color:var(--ink)}
+.nav a[aria-current="page"]{color:var(--ink);font-weight:600}
 .nav a:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:3px}
+/* THE ONE CONTROL IN THE HEADER, and it is the ask. */
+.nav a.navcta{background:var(--ink);color:#fff;border-radius:999px;padding-inline:18px;font-weight:650}
+.nav a.navcta:hover{background:#2b3238;color:#fff}
 /* THE FOOTER IS A DARK BAND, edge to edge (19 September 2026, the engineer's
    pick of two mockups after Fieldwire's). Company details and the independence
    line are the law's and the stores', and the check requires them on every page. */
-footer.foot{background:#1a1d21;color:#d3d9de;margin-top:72px;font-size:14px}
+footer.foot{background:#13181f;color:#d3d9de;margin-top:84px;font-size:14px}
 footer.foot .fcols{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.3fr;gap:32px;padding-block:52px 40px}
 footer.foot h2{font-size:14px;font-weight:700;letter-spacing:0;line-height:1.4;margin:0 0 6px;color:#fff}
 footer.foot a{color:#d3d9de;text-decoration:none}
@@ -61,52 +87,84 @@ footer.foot a:hover{text-decoration:underline}
 footer.foot a:focus-visible{outline:2px solid #fff;outline-offset:2px;border-radius:3px}
 footer.foot .fcols a{display:block;padding-block:11px;line-height:22px}
 footer.foot .fcols a.fhome{display:flex;align-items:center;gap:12px;padding:0;min-height:44px;color:#fff;margin-bottom:10px}
-footer.foot .fhome span{font-size:14px;letter-spacing:.22em;text-transform:uppercase;font-weight:600}
-footer.foot .fmark{width:34px;height:34px;flex:none;box-shadow:0 0 0 1px #4a515a}
-footer.foot p{margin:0 0 8px;color:#aab2b9;max-width:88ch}
+footer.foot .fhome span{font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:650}
+footer.foot .fmark{width:32px;height:32px;flex:none;border-radius:7px;box-shadow:0 0 0 1px #4a515a}
+footer.foot p{margin:0 0 8px;color:#a9b2ba;max-width:88ch}
 footer.foot .fbrand p{max-width:30ch}
-footer.foot .fbase{border-top:1px solid #3a4047;padding-block:22px 34px;font-size:13px}
+footer.foot .fbase{border-top:1px solid #333a43;padding-block:22px 34px;font-size:13px}
 @media (max-width:760px){footer.foot .fcols{grid-template-columns:1fr 1fr;row-gap:28px}footer.foot .fbrand{grid-column:1/-1}}
-@media (max-width:560px){.nav{margin-left:0;width:100%;gap:26px}}
+@media (max-width:560px){.nav{margin-left:0;width:100%;gap:18px}}
 /* ==== END SHARED ==== */
 
-/* THE PAGE IS LAID OUT THE WAY THE SHEET IS: a heading, a ruled box, rows. */
-.hero{padding-block:64px 40px}
-.hero > *{max-width:760px}
-h1{font-weight:700;letter-spacing:-.02em;margin:0 0 22px;font-size:clamp(32px,5.6vw,58px);line-height:1.06}
-.lede{font-size:clamp(17px,2.1vw,20px);line-height:1.55;color:var(--mid);margin:0 0 30px;max-width:54ch}
-.sec{padding-block:36px 8px}
+.hero{padding-block:72px 44px}
+.hero > *{max-width:820px}
+h1{font-weight:700;letter-spacing:-.028em;margin:0 0 22px;font-size:clamp(34px,5.8vw,60px);line-height:1.03}
+.lede{font-size:clamp(17.5px,2.1vw,20.5px);line-height:1.55;color:var(--mid);margin:0 0 30px;max-width:56ch}
+
+/* ==== THE ASK: TWO DOORS ====
+   The page is organised around the two people worth hearing from — an engineer
+   who would use it, and an association or workshop that wants its own
+   paperwork built. Decided 5 October 2026, replacing a pricing page: "prices
+   aren't settled and a visitor seeing a number I'm not ready to stand behind
+   is worse than no number." */
+.doors{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding-bottom:16px}
+.door{border:1px solid var(--line);border-radius:18px;padding:34px;background:var(--card);display:flex;flex-direction:column}
+.door.one{background:#f1f6fd;border-color:#d4e2f5}
+.door h2{margin:0;font-size:clamp(21px,2.4vw,26px);letter-spacing:-.018em;font-weight:700}
+.door > p{margin:12px 0 0;font-size:16.5px;flex:0 0 auto}
+.tag{font-size:12.5px;line-height:1.35;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--blue);margin-bottom:12px}
+.door.two .tag{color:var(--dim)}
+.list{margin:20px 0 26px;padding:0;list-style:none;color:var(--mid);font-size:15.5px;flex:1}
+.list li{padding:10px 0 10px 28px;position:relative;border-top:1px solid var(--line)}
+.list li::before{content:"";position:absolute;left:1px;top:17px;width:13px;height:7px;
+  border-left:2.5px solid var(--blue);border-bottom:2.5px solid var(--blue);transform:rotate(-45deg)}
+.door.two .list li::before{border-color:var(--ink)}
+@media (max-width:760px){.doors{grid-template-columns:1fr}.door{padding:26px}}
+
+/* The three facts an engineer checks first, on one rule. */
+.band{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--sand);margin-top:44px}
+/* A GRID, NOT A WRAPPING FLEX ROW. Three facts of unequal length in a flex row
+   put the third on a line of its own with a band of empty sand above it, which
+   reads as a missing fourth fact. Three columns, each wrapping inside itself. */
+.band .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;padding-block:24px;color:var(--dim);font-size:15px}
+.band b{color:var(--ink);font-weight:650}
+@media (max-width:760px){.band .wrap{grid-template-columns:1fr;gap:12px}}
+
+.sec{padding-block:44px 8px}
 .sec-head{display:flex;align-items:baseline;gap:16px;margin:0 0 10px}
-.sec-head h2{margin:0;font-size:clamp(20px,2.4vw,24px);font-weight:700;letter-spacing:-.01em}
+.sec-head h2{margin:0;font-size:clamp(21px,2.4vw,26px);font-weight:700;letter-spacing:-.018em}
 .cols{margin-left:auto;display:flex;gap:18px;font-size:12px;font-weight:700;color:var(--dim)}
-.box{background:var(--card);border:1.5px solid var(--ink)}
+.box{background:var(--card);border:1.5px solid var(--ink);border-radius:12px;overflow:hidden}
 .r{display:grid;grid-template-columns:minmax(0,1fr);border-bottom:1px solid var(--ink)}
 .r:last-child{border-bottom:0}
 .r:nth-child(odd){background:var(--row)}
-.r .k{margin:0;padding:14px 16px 2px;font-weight:600;font-size:15.5px}
+.r .k{margin:0;padding:14px 16px 2px;font-weight:650;font-size:15.5px}
 .r .v{margin:0;padding:0 16px 14px;color:var(--mid);font-size:15.5px}
 .lead{max-width:62ch;margin:0}
-.files{background:var(--ink);color:var(--bg);margin-block:44px}
-.files-in{display:grid;gap:20px;padding-block:34px}
-.files h2{margin:0 0 6px;font-size:clamp(20px,2.4vw,24px);font-weight:700;letter-spacing:-.01em}
+/* AN INSET CARD, NOT AN EDGE-TO-EDGE BAND. It is one block among several, and a
+   full-bleed panel with rounded corners pokes its corners past the glass on a
+   phone. The gutter is on the section, the padding on the card: 24 + 26 at
+   390px, so the white text sits 50px in. */
+.files{margin-block:52px;padding-inline:24px}
+.files-in{display:grid;gap:20px;max-width:1100px;margin:0 auto;padding:30px 26px;
+  background:var(--ink);color:#fff;border-radius:20px}
+.files h2{margin:0 0 6px;font-size:clamp(21px,2.4vw,26px);font-weight:700;letter-spacing:-.018em}
 .files p{margin:0;color:#c8ced4;font-size:15.5px;max-width:52ch}
 .files-list{display:grid;gap:10px;align-content:start}
 /* ONE SHADE PER VEHICLE, a step apart rather than three colours: on a dark
    band anything stronger reads as a warning. White on the lightest is 13:1. */
 .files-list a{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:2px 14px;
-  padding:13px 16px;border:1.5px solid #4c555d;color:var(--bg);text-decoration:none}
+  padding:13px 16px;border:1.5px solid #4c555d;border-radius:10px;color:#fff;text-decoration:none}
 .f-one{background:#1c2127}
 .f-two{background:#232931}
 .f-three{background:#2a313a}
 .files-list a:hover{border-color:#8b949c}
 .files-list a:hover .f-k{text-decoration:underline}
-.files-list a:focus-visible{outline:2px solid var(--bg);outline-offset:3px}
-.f-k{font-weight:600;font-size:16.5px}
+.files-list a:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.f-k{font-weight:650;font-size:16.5px}
 .f-v{color:#aab3bb;font-size:14px}
-@media (min-width:760px){.files-in{grid-template-columns:minmax(0,1fr) 360px;align-items:center;gap:40px;padding-block:44px}}
-
-
-.more a{display:inline-block;padding-block:11px;font-weight:600}
+@media (min-width:760px){.files-in{grid-template-columns:minmax(0,1fr) 360px;align-items:center;gap:40px;padding:42px 40px}}
+.more a{display:inline-block;padding-block:11px;font-weight:650}
 .note{display:grid;gap:4px;padding-block:44px 8px}
 .note > div{max-width:680px}
 .note b{font-size:14px;color:var(--ink)}
@@ -125,46 +183,66 @@ h1{font-weight:700;letter-spacing:-.02em;margin:0 0 22px;font-size:clamp(32px,5.
 .crops{display:flex;flex-wrap:wrap;gap:28px 32px;margin-top:22px;align-items:flex-start}
 .crop{margin:0;max-width:100%}
 .crop .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
-.crop img{display:block;width:100%;height:auto;border:1px solid var(--edge);background:#fff}
+.crop img{display:block;width:100%;height:auto;border:1px solid var(--edge);border-radius:10px;background:#fff}
 .crop figcaption{color:var(--dim);font-size:14px;margin-top:10px;max-width:60ch}
 .drag{color:var(--dim);font-size:13px;margin:14px 0 0}
 @media (min-width:700px){.drag{display:none}}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-</style>
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}</style>
 </head>
 <body>
 
-<header class="top wrap"><a class="home" href="/" aria-label="Habsheet — home"><svg class="mark" viewBox="0 0 1024 1024" aria-hidden="true">
+<header class="top wrap"><a class="home" href="/" aria-label="Habsheet &mdash; home"><svg class="mark" viewBox="0 0 1024 1024" aria-hidden="true">
   <rect width="1024" height="1024" fill="#0f1114"/>
   <path fill="#fff" d="M160 112h704v800H160z"/>
   <path fill="#0f1114" d="M232 184h560v656H232z"/>
   <path fill="#fff" d="M268 240h488v56H268zM268 372h488v56H268zM268 504h488v56H268zM476 560h56v280h-56z"/>
   <path fill="none" stroke="#fff" stroke-width="56" stroke-linecap="round" stroke-linejoin="round" d="M578 700l58 60 106-140"/>
-</svg><span class="name">Habsheet</span></a><nav class="nav"><a href="what-it-does.html">What it does</a><a href="pricing.html">Pricing</a><a href="contact.html">Contact</a></nav></header>
+</svg><span class="name">Habsheet</span></a><nav class="nav"><a href="what-it-does.html">What it does</a><a href="contact.html">Contact</a><a class="navcta" href="mailto:faruq@habsheet.com">Get in touch</a></nav></header>
 
 <section class="hero wrap">
   <h1>Habitation service record and damp report, on a tablet.</h1>
   <p class="lede">You fill in the sheet itself, on screen, and export it as a PDF. The
     customer has it before you leave the driveway.</p>
-  <a class="cta" href="contact.html">Get in touch</a>
 </section>
 
-<section class="sec wrap">
-  <div class="sec-head"><h2>Habsheet</h2><span class="cols" aria-hidden="true"><span>P</span><span>F</span><span>N/A</span><span>R</span></span></div>
-  <div class="box">
-    <div class="r"><h3 class="k">Who it is for</h3><p class="v">Engineers who carry out
-      habitation checks on tourers, motorhomes and campervans.</p></div>
-    <div class="r"><h3 class="k">What you do</h3><p class="v">Tap the answer box on the
-      sheet. Type readings into their boxes. Put damp readings on the drawing where you took
-      them. You and the customer sign on the tablet.</p></div>
-    <div class="r"><h3 class="k">What it keeps</h3><p class="v">Your details, your clients
-      and their vehicles, and a drawing for each make and model you have marked up before.</p></div>
-    <div class="r"><h3 class="k">What it produces</h3><p class="v">The service record and
-      the damp report, as one four-page PDF or each on its own.</p></div>
-    <div class="r"><h3 class="k">Signal</h3><p class="v">Not needed. Everything happens on
-      the tablet.</p></div>
+<section class="wrap doors">
+  <div class="door one">
+    <p class="tag">For engineers</p>
+    <h2>You carry out habitation checks</h2>
+    <p>On tourers, motorhomes and campervans &mdash; and you would rather not write the
+      same sheet out twice.</p>
+    <ul class="list">
+      <li>The sheet itself, answered on screen</li>
+      <li>Damp readings on the drawing where you took them</li>
+      <li>Both signatures on the tablet</li>
+      <li>No signal needed. Everything happens on the tablet</li>
+      <li>Your clients, their vehicles and their drawings kept for next year</li>
+    </ul>
+    <p><a class="cta blue" href="contact.html">Get in touch</a></p>
+    <p class="more" style="margin:14px 0 0"><a href="what-it-does.html">What it does, in detail</a></p>
   </div>
-  <p class="more"><a href="what-it-does.html">What it does, in detail</a></p>
+  <div class="door two">
+    <p class="tag">For associations and workshops</p>
+    <h2>You want your own paperwork built</h2>
+    <p>Habsheet is one trade&rsquo;s sheets, built properly. If you work to forms of your
+      own, they can be built the same way.</p>
+    <ul class="list">
+      <li>Your checklist, your drawings, your wording</li>
+      <li>Your own vehicle or equipment outlines</li>
+      <li>Built from the sheet you already issue, not bent to fit ours</li>
+      <li>Tell us what you use and we will tell you what it takes</li>
+    </ul>
+    <p><a class="cta ghost" href="contact.html">Get in touch</a></p>
+    <p class="more" style="margin:14px 0 0"><a href="#samples">See a finished report</a></p>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <span><b>Works with no signal.</b> Nothing waits on a connection.</span>
+    <span><b>Four pages.</b> One PDF, or each document on its own.</span>
+    <span><b>No scheme logos.</b> Habsheet is independent.</span>
+  </div>
 </section>
 
 <section class="sec wrap">
@@ -177,8 +255,8 @@ h1{font-weight:700;letter-spacing:-.02em;margin:0 0 22px;font-size:clamp(32px,5.
   <p class="drag">Drag a screen sideways to see all of it.</p>
 </section>
 
-<section class="files">
-  <div class="wrap files-in">
+<section class="files" id="samples">
+  <div class="files-in">
     <div>
       <h2>See a finished report</h2>
       <p>Exported by the app, marked SAMPLE on every page. Four pages each: the service record and the damp report.</p>
@@ -222,7 +300,7 @@ h1{font-weight:700;letter-spacing:-.02em;margin:0 0 22px;font-size:clamp(32px,5.
 </svg><span>Habsheet</span></a>
       <p>The habitation service record and damp report, on the sheet you already use.</p>
     </div>
-    <div><h2>Product</h2><a href="what-it-does.html">What it does</a><a href="pricing.html">Pricing</a></div>
+    <div><h2>Product</h2><a href="what-it-does.html">What it does</a><a href="contact.html">Contact</a></div>
     <div><h2>Legal</h2><a href="privacy.html">Privacy</a></div>
     <div><h2>Contact</h2><a href="contact.html">Contact</a><a href="mailto:faruq@habsheet.com">faruq@habsheet.com</a></div>
   </div>
